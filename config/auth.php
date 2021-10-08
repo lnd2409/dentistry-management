@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'khachhang'=>[
+            'driver'=> 'session',
+            'provider'=>'khachhang'
+        ],
+            'khachhang-api'=>[
+            'driver'=>'token',
+            'provider'=>'khachhang'
+        ],
     ],
 
     /*
@@ -63,6 +71,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'khachhang' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\KhachHang::class,
         ],
 
         // 'users' => [

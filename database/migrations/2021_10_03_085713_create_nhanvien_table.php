@@ -16,12 +16,12 @@ class CreateNhanvienTable extends Migration
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->id('nv_ma');
             $table->string('nv_hoten');
-            $table->string('nv_sdt');
-            $table->string('nv_namsinh');
-            $table->string('nv_diachi');
-            $table->string('nv_gioitinh');
-            $table->string('nv_taikhoan');
-            $table->string('nv_matkhau');
+            $table->string('nv_sdt')->nullable();
+            $table->string('nv_namsinh')->nullable();
+            $table->string('nv_diachi')->nullable();
+            $table->string('nv_gioitinh')->nullable();
+            $table->string('username');
+            $table->string('password');
             $table->timestamps();
         });
     }

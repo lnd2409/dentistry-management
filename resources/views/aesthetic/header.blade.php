@@ -72,7 +72,11 @@
                             </ul>
                         </nav>
                         <div class="header__btn">
-                            <a href="#" class="primary-btn">Appointment</a>
+                             @if (Auth::guard('khachhang')->check())
+                               <a href="{{ route('customer.logout') }}" class="primary-btn">Đăng xuất</a>
+                             @else
+                                <a href="{{ route('customer.login') }}" class="primary-btn">Đăng nhập/ Đăng kí</a>
+                             @endif
                         </div>
                     </div>
                 </div>

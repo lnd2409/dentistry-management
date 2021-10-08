@@ -8,3 +8,4 @@
     <script src="{{asset('template/aesthetic/js/jquery.slicknav.js')}}"></script>
     <script src="{{asset('template/aesthetic/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('template/aesthetic/js/main.js')}}"></script>
+    @stack('scripts')

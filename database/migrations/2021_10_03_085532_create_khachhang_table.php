@@ -16,10 +16,12 @@ class CreateKhachhangTable extends Migration
         Schema::create('khachhang', function (Blueprint $table) {
             $table->id('hsb_ma');
             $table->string('hsb_hoten');
-            $table->string('hsb_sdt');
-            $table->string('hsb_namsinh');
-            $table->string('hsb_diachi');
-            $table->string('hsb_gioitinh');
+            $table->string('hsb_sdt')->nullable();
+            $table->string('hsb_namsinh')->nullable();
+            $table->string('hsb_diachi')->nullable();
+            $table->string('hsb_gioitinh')->nullable();
+            $table->string('username');
+            $table->string('password');
             $table->timestamps();
         });
     }

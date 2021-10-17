@@ -33,32 +33,43 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
+            <li class="nav-item">
+            <a href="{{route('thuoc.index')}}" class="nav-link @if(Request::segment(1)=='thuoc' ) active @endif">
+              <i class="fas fa-capsules"></i>
+              <p>
+                Thuốc
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="{{route('dichvu.index')}}" class="nav-link @if(Request::segment(1)=='dich-vu' ) active @endif">
+              <i class="fas fa-prescription-bottle-alt"></i>
+              <p>
+                Dịch vụ
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="{{route('loaidichvu.index')}}" class="nav-link @if(Request::segment(1)=='loai-dich-vu' ) active @endif">
+              <i class="fas fa-prescription-bottle-alt"></i>
+              <p>
+                Loai dịch vụ
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="{{route('xetnghiem.index')}}" class="nav-link @if(Request::segment(1)=='xet-nghiem' ) active @endif">
+              <i class="fas fa-stethoscope"></i>
+              <p>
+                Xét nghiệm
+              </p>
+            </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{route('loaixetnghiem.index')}}" class="nav-link @if(Request::segment(1)=='loai-xet-nghiem' ) active @endif">
+              <i class="fas fa-stethoscope"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Loại xét nghiệm
               </p>
             </a>
           </li>

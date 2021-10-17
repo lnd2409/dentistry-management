@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @include('admin.head')
+  @include('admin.template.head')
   @stack('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  @include('admin.navbar')
-  @include('admin.sidebar')
+  @include('admin.template.navbar')
+  @include('admin.template.sidebar')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -34,7 +34,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-  @include('admin.footer')
+  @include('admin.template.footer')
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
@@ -43,7 +43,7 @@
 </div>
 
 <!-- ./wrapper -->
-@include('admin.script')
+@include('admin.template.script')
 @stack('script')
 </body>
 </html>

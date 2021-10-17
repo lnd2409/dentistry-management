@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Khachhang;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+Use Alert;
 use DB;
 use Session;
+use Auth;
+use App\Models\KhachHang;
 class DatLichHenController extends Controller
 {
     /**
@@ -38,21 +41,46 @@ class DatLichHenController extends Controller
         $khachhang = [
             'hsb_hoten' => $hoten,
             'username'=>$sdt,
-            'password'=>bcrypt('12345')
+            'hsb_sdt'=>$sdt,
+            'password'=>bcrypt('123')
         ];
-
-        $result = DB::table('khachhang')->insert($khachhang);
+        // Create thông tin bệnh nhân
+        $idCustommer = DB::table('khachhang')->insertGetId($khachhang);
+        //Lấy thông tin cho lịch hẹn
+        $lichHen=[
+            'ph_ngayhen'=>date('Y-m-d', strtotime($ngayhen)),
+            'ph_giohen'=>date("H:i", strtotime($ngayhen)),
+            'ph_yeucau'=>$noidung,
+            'ph_trangthai'=>0, //Chưa có được duyệt bởi admin
+            'hsb_ma'=>$idCustommer
+        ];
+        $result = DB::table('phieuhen')->insert($lichHen);
         if($result)
         {
-            Session::flash('message', 'Đặt lịch thành công!');
+            alert()->success('Đặt lịch hẹn', 'Thành công');
         }
-
         return redirect()->route('customer.home');
 
        
 
     }
 
+    public function checkCustomer(Request $request)
+    {
+         if($request->ajax()){
+            $temp=0;
+            $result = KhachHang::where('hsb_sdt',$request->sdt)->get();
+            return response()->json(['data'=>$result],200);
+         } 
+    }
+
+
+    public function reView()
+    {
+        $lichHen = DB::table('phieuhen')->where('hsb_ma', Auth::guard('khachhang')->id())->get();
+        // dd($lichHen);
+        return view('client.lichhen.index',compact('lichHen'));
+    }
     /**
      * Display the specified resource.
      *

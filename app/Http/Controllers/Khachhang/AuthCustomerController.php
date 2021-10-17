@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Khachhang;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\KhachHang;
 class AuthCustomerController extends Controller
 {
     /**

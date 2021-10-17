@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <ul class="header__top__left">
-                            <li><i class="fa fa-user"></i>@if (Auth::guard('khachhang')->id())
+                            <li><i class="fa fa-user"></i>@if (Auth::guard('khachhang')->check())
                                 {{Auth::guard('khachhang')->user()->hsb_hoten}}
                                 @else
                                 Guest

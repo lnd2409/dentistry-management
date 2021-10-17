@@ -21,6 +21,7 @@
             <tr>
                 <th>Tên cận lâm sàn</th>
                 <th>Mô tả</th>
+                <th>Giá</th>
                 <th>Loại cận lâm sàn</th>
                 <th>Tác vụ</th>
             </tr>
@@ -30,6 +31,7 @@
             <tr>
                 <td>{{$item->cls_ten}}</td>
                 <td>{{$item->cls_mota}}</td>
+                <td>{{number_format($item->dongia->dongia)}}</td>
                 <td>{{$item->loaicl->lcls_ten}}</td>
                 <td>
                     <form action="{{route('xetnghiem.destroy',$item)}}" method="post">

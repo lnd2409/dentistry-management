@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Dichvu;
 use App\Models\Loaidv;
+use App\Models\Ngay;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -40,7 +41,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        Dichvu::create($request->all());
+        $dv=Dichvu::create($request->all());
+        $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
+        $dv->giadv()->create([
+            'dv_ma'=>$dv->dv_ma,
+            'ngay_ma'=>$ngay->ngay_ma,
+            'dongia'=>$request->dongia
+        ]);
 
         return redirect()->route('dichvu.index')->with('success', 'Thêm dịch vụ thành công');
     }
@@ -79,6 +86,15 @@ class ServiceController extends Controller
     public function update(Request $request, Dichvu $dichvu)
     {
         $dichvu->update($request->all());
+
+        if($request->dongia!= $dichvu->giadv->dongia){
+            $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
+            $dichvu->giadv()->create([
+                'dv_ma'=>$dichvu->dv_ma,
+                'ngay_ma'=>$ngay->ngay_ma,
+                'dongia'=>$request->dongia
+            ]);
+        }
 
         return redirect()->route('dichvu.index')->with('success', 'Cập nhật dịch vụ thành công');
     }

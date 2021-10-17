@@ -34,7 +34,8 @@ class Giadv extends Model
 
 	protected $fillable = [
 		'dv_ma',
-		'ngay_ma'
+		'ngay_ma',
+		'dongia'
 	];
 
 	public function dichvu()

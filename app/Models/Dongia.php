@@ -23,13 +23,13 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Dongium extends Model
+class Dongia extends Model
 {
 	protected $table = 'dongia';
 	public $incrementing = false;
 
 	protected $casts = [
-		'dongia' => 'float',
+		'dongia' => 'int',
 		'cls_ma' => 'int',
 		'ngay_ma' => 'int'
 	];

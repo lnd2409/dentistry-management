@@ -33,8 +33,9 @@ class Ngay extends Model
 	];
 
 	protected $fillable = [
+		'ngay_ma',
 		'ngay'
-	];
+	];	
 
 	public function dongium()
 	{

@@ -22,6 +22,7 @@
                 <th>Tên dịch vụ</th>
                 <th>Mô tả dịch vụ</th>
                 <th>Thời gian dự kiến</th>
+                <th>Đơn giá</th>
                 <th>Loại DV</th>
                 <th>Tác vụ</th>
             </tr>
@@ -32,6 +33,7 @@
                 <td>{{$item->dv_ten}}</td>
                 <td>{{$item->dv_mota}}</td>
                 <td>{{$item->dv_tgdukien}}</td>
+                <td>{{number_format($item->giadv->dongia)}}</td>
                 <td>{{$item->loaidv->ldv_ten}}</td>
                 <td>
                     <form action="{{route('dichvu.destroy',$item)}}" method="post">

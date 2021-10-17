@@ -56,6 +56,6 @@ class Dichvu extends Model
 
 	public function giadv()
 	{
-		return $this->hasOne(Giadv::class, 'dv_ma');
+		return $this->belongsTo(Giadv::class, 'dv_ma','dv_ma')->latest('ngay_ma');
 	}
 }

@@ -32,7 +32,7 @@
                 <td>{{$item->t_ma}}</td>
                 <td>{{$item->t_ten}}</td>
                 <td>{{$item->t_hoachat}}</td>
-                <td>{{$item->gia->gt_gia}}</td>
+                <td>{{number_format($item->gia->gt_gia)}}</td>
                 <td>
                     <form action="{{route('thuoc.destroy',$item)}}" method="post">
                         @csrf

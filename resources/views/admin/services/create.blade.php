@@ -19,6 +19,8 @@
                     <div class="col-md-9"><input type="text" name="dv_mota" class="form-control"></div>
                     <div class="col-md-3">Thời gian dự kiến</div>
                     <div class="col-md-9"><input type="text" name="dv_tgdukien" class="form-control"></div>
+                    <div class="col-md-3">Giá</div>
+                    <div class="col-md-9"><input type="number" min="0" name="dongia" class="form-control" required></div>
                     <div class="col-md-3">Loại dịch vụ</div>
                     <div class="col-md-9">
                         <select name="ldv_ma" id="" class="form-control">

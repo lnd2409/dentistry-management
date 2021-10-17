@@ -15,6 +15,8 @@ class CreateGiadvTable extends Migration
     {
         Schema::create('giadv', function (Blueprint $table) {
 
+
+            $table->integer('dongia')->unsigned();
             $table->bigInteger('dv_ma')->unsigned();
             $table->foreign('dv_ma')->references('dv_ma')->on('dichvu')->onDelete('CASCADE');
 

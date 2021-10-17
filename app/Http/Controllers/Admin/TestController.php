@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Canlamsan;
 use App\Models\Loaicl;
+use App\Models\Ngay;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -41,8 +42,14 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        Canlamsan::create($request->all());
-
+        $cls=Canlamsan::create($request->all());
+        $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
+        $cls->dongia()->create([
+            'cls_ma'=>$cls->cls_ma,
+            'ngay_ma'=>$ngay->ngay_ma,
+            'dongia'=>$request->dongia
+           
+        ]);
         return redirect()->route('xetnghiem.index')->with('success', 'Thêm thành công');
     }
 
@@ -80,6 +87,14 @@ class TestController extends Controller
     public function update(Request $request, Canlamsan $canlamsan)
     {
         $canlamsan->update($request->all());
+        if($request->dongia!= $canlamsan->dongia->dongia){
+            $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
+            $canlamsan->dongia()->create([
+                'cls_ma'=>$canlamsan->cls_ma,
+                'ngay_ma'=>$ngay->ngay_ma,
+                'dongia'=>$request->dongia
+            ]);
+        }
 
         return redirect()->route('xetnghiem.index')->with('success', 'Cập nhật thành công');
     }

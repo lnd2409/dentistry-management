@@ -20,13 +20,14 @@ class CreatePhieuhenTable extends Migration
             $table->string('ph_yeucau');
             $table->string('ph_trangthai');
 
-            $table->bigInteger('nv_ma')->unsigned();
+            $table->bigInteger('nv_ma')->nullable()->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');
             $table->bigInteger('hsb_ma')->unsigned();
             $table->foreign('hsb_ma')->references('hsb_ma')->on('khachhang')->onDelete('CASCADE');
 
 
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

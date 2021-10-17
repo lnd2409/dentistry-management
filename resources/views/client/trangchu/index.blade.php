@@ -1,5 +1,6 @@
 @extends('aesthetic.layout')
 @section('content')
+@include('sweetalert::alert')
     <!-- Hero Section Begin -->
     <section class="hero spad set-bg" data-setbg="{{asset('template/aesthetic/img/hero-bg.jpg')}}">
         <div class="container">
@@ -20,9 +21,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    @if(Session::has('message'))
-                       <p class="alert  alert-success text-center" style="margin-bottom: 30px">{{ Session::get('message') }}</p>
-                   @endif
                     <div class="consultation__form">
                         <div class="section-title">
                             <span>Đặt lịch hẹn</span>
@@ -32,7 +30,8 @@
                         <form action="{{ route('customer.datlichhen') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="text" name="hoten" placeholder="Họ tên">
-                            <input type="text" name="sdt" placeholder="Số điện thoại">
+                            <small style="color: red" id="erorr_mess"></small>
+                            <input type="number"  name="sdt" id="getSdt" placeholder="Số điện thoại" >
                             <input type="datetime-local" name="ngayhen" placeholder="Ngày hẹn">
                             {{-- <div class="datepicker__item">
                                 <input type="text" name="Ngayhen" placeholder="Ngày hẹn" class="datepicker">
@@ -329,4 +328,37 @@
     <!-- Latest News End -->
     
 @endsection
+@push('scripts')
+  <script>
+     $(document).ready(function () {
+          $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        //Check thong tin khach hang
+        $("#getSdt").change(function (e) { 
+            var sdt = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "{{route('customer.checkcustomer')}}",
+                data: {sdt:sdt},
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.data.length);
+                    if(response.data.length > 0){
+                        $("#erorr_mess").html('Số điện này đã được đăng ký!');
+                        $("#getSdt").css("border-color","red");
+                    }
+                    else
+                    {
+                        $("#erorr_mess").html('');
+                        $("#getSdt").css("border-color","unset");
+                    }
+                }
+            });
+        });
+     });
+  </script>
+@endpush
 

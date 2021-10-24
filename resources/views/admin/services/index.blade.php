@@ -1,9 +1,9 @@
 @extends('admin.template.layout')
 @push('css')
-    
+
 @endpush
 @section('breadcrumb')
-    
+
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <a class="btn btn-primary" href="{{ route('dichvu.create') }}">
                 Thêm mới
-              </a>
+            </a>
         </div>
     </div>
     <br>
@@ -38,8 +38,8 @@
                 <td>
                     <form action="{{route('dichvu.destroy',$item)}}" method="post">
                         @csrf
-                        <a href="{{route('dichvu.edit',$item)}}">sửa</a>
-                        <button type="submit">xóa</button>
+                        <a href="{{route('dichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
+                        <button type="submit" class="btn btn-danger">xóa</button>
                     </form>
                 </td>
             </tr>
@@ -49,5 +49,5 @@
 </div>
 @endsection
 @push('script')
-    
+
 @endpush

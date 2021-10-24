@@ -33,36 +33,50 @@ class DatLichHenController extends Controller
         $ngayhen = $request->ngayhen;
         $sdt = $request->sdt;
         $noidung = $request->noidung;
-
-        /*
+       if(Auth::guard('khachhang')->check())
+       {
+             $lichHen=[
+             'ph_ngayhen'=>date('Y-m-d', strtotime($ngayhen)),
+             'ph_giohen'=>date("H:i", strtotime($ngayhen)),
+             'ph_yeucau'=>$noidung,
+             'ph_trangthai'=>0, //Chưa có được duyệt bởi admin
+             'hsb_ma'=>Auth::guard('khachhang')->user()->hsb_ma
+             ];
+                $result = DB::table('phieuhen')->insert($lichHen);
+            if($result)
+            {
+                alert()->success('Đặt lịch hẹn', 'Thành công');
+            }
+       }
+       else
+       {
+            /*
             * Lấy thông tin khách hàng đặt lịch hẹn lưu vào hồ sơ bệnh và tạo tài khoản cho khách hàng.
-            * Check khách hàng đã tồn tại hay chưa ? 
-        */
-        $khachhang = [
-            'hsb_hoten' => $hoten,
-            'username'=>$sdt,
-            'hsb_sdt'=>$sdt,
-            'password'=>bcrypt('123')
-        ];
-        // Create thông tin bệnh nhân
-        $idCustommer = DB::table('khachhang')->insertGetId($khachhang);
-        //Lấy thông tin cho lịch hẹn
-        $lichHen=[
-            'ph_ngayhen'=>date('Y-m-d', strtotime($ngayhen)),
-            'ph_giohen'=>date("H:i", strtotime($ngayhen)),
-            'ph_yeucau'=>$noidung,
-            'ph_trangthai'=>0, //Chưa có được duyệt bởi admin
-            'hsb_ma'=>$idCustommer
-        ];
-        $result = DB::table('phieuhen')->insert($lichHen);
-        if($result)
-        {
-            alert()->success('Đặt lịch hẹn', 'Thành công');
-        }
+            * Check khách hàng đã tồn tại hay chưa ?
+            */
+            $khachhang = [
+                'hsb_hoten' => $hoten,
+                'username'=>$sdt,
+                'hsb_sdt'=>$sdt,
+                'password'=>bcrypt('123')
+            ];
+            // Create thông tin bệnh nhân
+            $idCustommer = DB::table('khachhang')->insertGetId($khachhang);
+            //Lấy thông tin cho lịch hẹn
+            $lichHen=[
+                'ph_ngayhen'=>date('Y-m-d', strtotime($ngayhen)),
+                'ph_giohen'=>date("H:i", strtotime($ngayhen)),
+                'ph_yeucau'=>$noidung,
+                'ph_trangthai'=>0, //Chưa có được duyệt bởi admin
+                'hsb_ma'=>$idCustommer
+            ];
+            $result = DB::table('phieuhen')->insert($lichHen);
+            if($result)
+            {
+                alert()->success('Đặt lịch hẹn', 'Thành công');
+            }
+       }
         return redirect()->route('customer.home');
-
-       
-
     }
 
     public function checkCustomer(Request $request)

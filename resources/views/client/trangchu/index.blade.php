@@ -29,9 +29,14 @@
                         {{-- Form đặt lịch hẹn --}}
                         <form action="{{ route('customer.datlichhen') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @if (Auth::guard('khachhang')->check())
+                                <input type="text" disabled value=" {{Auth::guard('khachhang')->user()->hsb_hoten}} " >
+                                 <input type="number" disabled  value="{{Auth::guard('khachhang')->user()->hsb_sdt}}">
+                            @else
                             <input type="text" name="hoten" placeholder="Họ tên">
                             <small style="color: red" id="erorr_mess"></small>
                             <input type="number"  name="sdt" id="getSdt" placeholder="Số điện thoại" >
+                            @endif
                             <input type="datetime-local" name="ngayhen" placeholder="Ngày hẹn">
                             {{-- <div class="datepicker__item">
                                 <input type="text" name="Ngayhen" placeholder="Ngày hẹn" class="datepicker">

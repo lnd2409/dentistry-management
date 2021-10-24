@@ -50,8 +50,8 @@ class Canlamsan extends Model
 		return $this->hasOne(Chitietphieuchitietcanlamsan::class, 'cls_ma');
 	}
 
-	public function dongium()
+	public function dongia()
 	{
-		return $this->hasOne(Dongium::class, 'cls_ma');
+		return $this->belongsTo(Dongia::class, 'cls_ma','cls_ma')->latest('ngay_ma');
 	}
 }

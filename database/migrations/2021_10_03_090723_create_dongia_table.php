@@ -14,7 +14,7 @@ class CreateDongiaTable extends Migration
     public function up()
     {
         Schema::create('dongia', function (Blueprint $table) {
-            $table->float('dongia');
+            $table->integer('dongia')->unsigned();
 
             $table->bigInteger('cls_ma')->unsigned();
             $table->foreign('cls_ma')->references('cls_ma')->on('canlamsan')->onDelete('CASCADE');

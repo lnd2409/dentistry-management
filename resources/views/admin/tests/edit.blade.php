@@ -17,6 +17,8 @@
                     <div class="col-md-9"><input type="text" value="{{$canlamsan->cls_ten}}" name="cls_ten" class="form-control"></div>
                     <div class="col-md-3">Mô tả</div>
                     <div class="col-md-9"><input type="text" value="{{$canlamsan->cls_mota}}" name="cls_mota" class="form-control"></div>
+                    <div class="col-md-3">Giá</div>
+                    <div class="col-md-9"><input type="number" min="0" value="{{$canlamsan->dongia->dongia}}" name="dongia" class="form-control" required></div>
                     <div class="col-md-3">Loại cận lâm sàn</div>
                     <div class="col-md-9">
                         <select name="lcls_ma" id="" class="form-control">

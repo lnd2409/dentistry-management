@@ -1,9 +1,9 @@
 @extends('admin.template.layout')
 @push('css')
-    
+
 @endpush
 @section('breadcrumb')
-    
+
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <a class="btn btn-primary" href="{{ route('dichvu.create') }}">
                 Thêm mới
-              </a>
+            </a>
         </div>
     </div>
     <br>
@@ -22,6 +22,7 @@
                 <th>Tên dịch vụ</th>
                 <th>Mô tả dịch vụ</th>
                 <th>Thời gian dự kiến</th>
+                <th>Đơn giá</th>
                 <th>Loại DV</th>
                 <th>Tác vụ</th>
             </tr>
@@ -32,12 +33,13 @@
                 <td>{{$item->dv_ten}}</td>
                 <td>{{$item->dv_mota}}</td>
                 <td>{{$item->dv_tgdukien}}</td>
+                <td>{{number_format($item->giadv->dongia)}}</td>
                 <td>{{$item->loaidv->ldv_ten}}</td>
                 <td>
                     <form action="{{route('dichvu.destroy',$item)}}" method="post">
                         @csrf
-                        <a href="{{route('dichvu.edit',$item)}}">sửa</a>
-                        <button type="submit">xóa</button>
+                        <a href="{{route('dichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
+                        <button type="submit" class="btn btn-danger">xóa</button>
                     </form>
                 </td>
             </tr>
@@ -47,5 +49,5 @@
 </div>
 @endsection
 @push('script')
-    
+
 @endpush

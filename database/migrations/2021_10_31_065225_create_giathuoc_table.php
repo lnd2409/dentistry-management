@@ -14,10 +14,14 @@ class CreateGiathuocTable extends Migration
     public function up()
     {
         Schema::create('giathuoc', function (Blueprint $table) {
-            $table->dateTime('gt_ngay')->primary();
-            $table->bigInteger('gt_gia')->unsigned();
-            $table->bigInteger('t_ma')->unsigned();
-            $table->foreign('t_ma')->references('t_ma')->on('thuoc')->onDelete('CASCADE');
+            $table->id('gt_ma');
+            $table->date('gt_ngay');
+            $table->integer('gt_gia');
+
+            $table->bigInteger('thuoc_ma')->unsigned();
+            $table->foreign('thuoc_ma')->references('thuoc_ma')->on('thuoc')->onDelete('CASCADE');
+
+            $table->timestamps();
         });
     }
 

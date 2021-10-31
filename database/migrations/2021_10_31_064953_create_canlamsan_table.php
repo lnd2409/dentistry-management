@@ -16,11 +16,11 @@ class CreateCanlamsanTable extends Migration
         Schema::create('canlamsan', function (Blueprint $table) {
             $table->id('cls_ma');
             $table->string('cls_ten');
-            $table->text('cls_mota');
+            $table->string('cls_mota');
 
             $table->bigInteger('lcls_ma')->unsigned();
-            $table->foreign('lcls_ma')->references('lcls_ma')->on('loaicls')->onDelete('CASCADE');
-            
+            $table->foreign('lcls_ma')->references('lcls_ma')->on('loaicanlamsan')->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }

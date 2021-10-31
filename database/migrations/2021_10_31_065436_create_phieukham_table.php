@@ -16,19 +16,16 @@ class CreatePhieukhamTable extends Migration
         Schema::create('phieukham', function (Blueprint $table) {
             $table->id('pk_ma');
             $table->date('pk_ngaykham');
+            $table->integer('pk_trangthai')->default(0);
             $table->text('pk_ghichu');
-            $table->integer('pk_trangthai');
             $table->date('pk_ngaytaikham');
-
-            $table->bigInteger('pt_ma')->unsigned();
-            $table->foreign('pt_ma')->references('pt_ma')->on('phieuthu')->onDelete('CASCADE');
 
             $table->bigInteger('nv_ma')->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');
 
             $table->bigInteger('hsb_ma')->unsigned();
-            $table->foreign('hsb_ma')->references('hsb_ma')->on('khachhang')->onDelete('CASCADE');
-            
+            $table->foreign('hsb_ma')->references('hsb_ma')->on('hosobenh')->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }

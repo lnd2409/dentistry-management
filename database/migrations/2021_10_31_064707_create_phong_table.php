@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoaidvTable extends Migration
+class CreatePhongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateLoaidvTable extends Migration
      */
     public function up()
     {
-        Schema::create('loaidv', function (Blueprint $table) {
-            $table->id('ldv_ma');
-            $table->string('ldv_ten');
-            $table->text('ldv_mota');
+        Schema::create('phong', function (Blueprint $table) {
+            $table->id('p_ma');
+            $table->string('p_ten');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateLoaidvTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaidv');
+        Schema::dropIfExists('phong');
     }
 }

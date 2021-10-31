@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateThuocTable extends Migration
+class CreateLoaicanlamsanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateThuocTable extends Migration
      */
     public function up()
     {
-        Schema::create('thuoc', function (Blueprint $table) {
-            $table->id('t_ma');
-            $table->string('t_ten');
-            $table->text('t_hoachat');
+        Schema::create('loaicanlamsan', function (Blueprint $table) {
+            $table->id('lcls_ma');
+            $table->string('lcls_ten');
+            $table->string('lcls_mota');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateThuocTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thuoc');
+        Schema::dropIfExists('loaicanlamsan');
     }
 }

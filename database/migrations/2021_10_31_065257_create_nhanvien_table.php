@@ -15,13 +15,20 @@ class CreateNhanvienTable extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->id('nv_ma');
-            $table->string('nv_hoten');
-            $table->string('nv_sdt')->nullable();
-            $table->string('nv_namsinh')->nullable();
-            $table->string('nv_diachi')->nullable();
+            $table->string('nv_ten');
             $table->string('nv_gioitinh')->nullable();
+            $table->string('nv_diachi')->nullable();
+            $table->string('nv_cmnd')->nullable();
+            $table->string('nv_sdt')->nullable();
             $table->string('username');
             $table->string('password');
+
+            $table->bigInteger('cm_ma')->unsigned();
+            $table->foreign('cm_ma')->references('cm_ma')->on('chuyenmon')->onDelete('CASCADE');
+
+            $table->bigInteger('cv_ma')->unsigned();
+            $table->foreign('cv_ma')->references('cv_ma')->on('chucvu')->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }

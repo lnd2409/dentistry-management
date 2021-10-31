@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoaiclsTable extends Migration
+class CreateThuocTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateLoaiclsTable extends Migration
      */
     public function up()
     {
-        Schema::create('loaicls', function (Blueprint $table) {
-            $table->id('lcls_ma');
-            $table->string('lcls_ten');
-            $table->text('lcls_mota');
+        Schema::create('thuoc', function (Blueprint $table) {
+            $table->id('thuoc_ma');
+            $table->string('thuoc_ten');
+            $table->string('thuoc_hoachat');
+            $table->integer('thuoc_soluong');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateLoaiclsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaicls');
+        Schema::dropIfExists('thuoc');
     }
 }

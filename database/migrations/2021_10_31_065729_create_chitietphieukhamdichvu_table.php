@@ -14,13 +14,14 @@ class CreateChitietphieukhamdichvuTable extends Migration
     public function up()
     {
         Schema::create('chitietphieukhamdichvu', function (Blueprint $table) {
+            $table->id('ctpkdv_id');
 
             $table->bigInteger('dv_ma')->unsigned();
             $table->foreign('dv_ma')->references('dv_ma')->on('dichvu')->onDelete('CASCADE');
 
             $table->bigInteger('pk_ma')->unsigned();
             $table->foreign('pk_ma')->references('pk_ma')->on('phieukham')->onDelete('CASCADE');
-            
+
             $table->timestamps();
         });
     }

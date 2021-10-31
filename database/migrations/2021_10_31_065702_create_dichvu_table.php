@@ -16,11 +16,11 @@ class CreateDichvuTable extends Migration
         Schema::create('dichvu', function (Blueprint $table) {
             $table->id('dv_ma');
             $table->string('dv_ten');
-            $table->string('dv_mota');
-            $table->string('dv_tgdukien');
+            $table->text('dv_mota');
+            $table->string('dv_thoigiandukien');
 
             $table->bigInteger('ldv_ma')->unsigned();
-            $table->foreign('ldv_ma')->references('ldv_ma')->on('loaidv')->onDelete('CASCADE');
+            $table->foreign('ldv_ma')->references('ldv_ma')->on('loaidichvu')->onDelete('CASCADE');
 
             $table->timestamps();
         });

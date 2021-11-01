@@ -10,11 +10,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Dongium
+ * Class Giadichvucanlamsan
  * 
- * @property float $dongia
- * @property int $cls_ma
+ * @property int $gdvcls_id
  * @property int $ngay_ma
+ * @property int $cls_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -23,21 +23,19 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Dongia extends Model
+class Giadichvucanlamsan extends Model
 {
-	protected $table = 'dongia';
-	public $incrementing = false;
+	protected $table = 'giadichvucanlamsan';
+	protected $primaryKey = 'gdvcls_id';
 
 	protected $casts = [
-		'dongia' => 'int',
-		'cls_ma' => 'int',
-		'ngay_ma' => 'int'
+		'ngay_ma' => 'int',
+		'cls_ma' => 'int'
 	];
 
 	protected $fillable = [
-		'dongia',
-		'cls_ma',
-		'ngay_ma'
+		'ngay_ma',
+		'cls_ma'
 	];
 
 	public function canlamsan()

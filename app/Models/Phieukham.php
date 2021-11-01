@@ -15,21 +15,20 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $pk_ma
  * @property Carbon $pk_ngaykham
- * @property string $pk_ghichu
  * @property int $pk_trangthai
+ * @property string $pk_ghichu
  * @property Carbon $pk_ngaytaikham
- * @property int $pt_ma
  * @property int $nv_ma
  * @property int $hsb_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Khachhang $khachhang
+ * @property Hosobenh $hosobenh
  * @property Nhanvien $nhanvien
- * @property Phieuthu $phieuthu
  * @property Collection|Dichvu[] $dichvus
- * @property Chitietthuoc $chitietthuoc
- * @property Collection|Phieuchidinh[] $phieuchidinhs
+ * @property Collection|Chitietthuoc[] $chitietthuocs
+ * @property Collection|Phieuthu[] $phieuthus
+ * @property Collection|Phieuxetnghiem[] $phieuxetnghiems
  *
  * @package App\Models
  */
@@ -40,7 +39,6 @@ class Phieukham extends Model
 
 	protected $casts = [
 		'pk_trangthai' => 'int',
-		'pt_ma' => 'int',
 		'nv_ma' => 'int',
 		'hsb_ma' => 'int'
 	];
@@ -52,17 +50,16 @@ class Phieukham extends Model
 
 	protected $fillable = [
 		'pk_ngaykham',
-		'pk_ghichu',
 		'pk_trangthai',
+		'pk_ghichu',
 		'pk_ngaytaikham',
-		'pt_ma',
 		'nv_ma',
 		'hsb_ma'
 	];
 
-	public function khachhang()
+	public function hosobenh()
 	{
-		return $this->belongsTo(Khachhang::class, 'hsb_ma');
+		return $this->belongsTo(Hosobenh::class, 'hsb_ma');
 	}
 
 	public function nhanvien()
@@ -70,24 +67,25 @@ class Phieukham extends Model
 		return $this->belongsTo(Nhanvien::class, 'nv_ma');
 	}
 
-	public function phieuthu()
-	{
-		return $this->belongsTo(Phieuthu::class, 'pt_ma');
-	}
-
 	public function dichvus()
 	{
 		return $this->belongsToMany(Dichvu::class, 'chitietphieukhamdichvu', 'pk_ma', 'dv_ma')
+					->withPivot('ctpkdv_id')
 					->withTimestamps();
 	}
 
-	public function chitietthuoc()
+	public function chitietthuocs()
 	{
-		return $this->hasOne(Chitietthuoc::class, 'pk_ma');
+		return $this->hasMany(Chitietthuoc::class, 'pk_ma');
 	}
 
-	public function phieuchidinhs()
+	public function phieuthus()
 	{
-		return $this->hasMany(Phieuchidinh::class, 'pk_ma');
+		return $this->hasMany(Phieuthu::class, 'pk_ma');
+	}
+
+	public function phieuxetnghiems()
+	{
+		return $this->hasMany(Phieuxetnghiem::class, 'pk_ma');
 	}
 }

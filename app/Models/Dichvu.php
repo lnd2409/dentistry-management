@@ -16,14 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $dv_ma
  * @property string $dv_ten
  * @property string $dv_mota
- * @property string $dv_tgdukien
+ * @property string $dv_thoigiandukien
  * @property int $ldv_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Loaidv $loaidv
+ * @property Loaidichvu $loaidichvu
  * @property Collection|Phieukham[] $phieukhams
- * @property Giadv $giadv
  *
  * @package App\Models
  */
@@ -39,23 +38,19 @@ class Dichvu extends Model
 	protected $fillable = [
 		'dv_ten',
 		'dv_mota',
-		'dv_tgdukien',
+		'dv_thoigiandukien',
 		'ldv_ma'
 	];
 
-	public function loaidv()
+	public function loaidichvu()
 	{
-		return $this->belongsTo(Loaidv::class, 'ldv_ma');
+		return $this->belongsTo(Loaidichvu::class, 'ldv_ma');
 	}
 
 	public function phieukhams()
 	{
 		return $this->belongsToMany(Phieukham::class, 'chitietphieukhamdichvu', 'dv_ma', 'pk_ma')
+					->withPivot('ctpkdv_id')
 					->withTimestamps();
-	}
-
-	public function giadv()
-	{
-		return $this->belongsTo(Giadv::class, 'dv_ma','dv_ma')->latest('ngay_ma');
 	}
 }

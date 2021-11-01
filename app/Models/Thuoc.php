@@ -7,44 +7,46 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Thuoc
  * 
- * @property int $t_ma
- * @property string $t_ten
- * @property string $t_hoachat
+ * @property int $thuoc_ma
+ * @property string $thuoc_ten
+ * @property string $thuoc_hoachat
+ * @property int $thuoc_soluong
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Chitietthuoc $chitietthuoc
+ * @property Collection|Chitietthuoc[] $chitietthuocs
+ * @property Collection|Giathuoc[] $giathuocs
  *
  * @package App\Models
  */
 class Thuoc extends Model
 {
 	protected $table = 'thuoc';
-	protected $primaryKey = 't_ma';
+	protected $primaryKey = 'thuoc_ma';
 
-	protected $fillable = [
-		't_ma',
-		't_ten',
-		't_hoachat',
+	protected $casts = [
+		'thuoc_soluong' => 'int'
 	];
 
-	public function chitietthuoc()
+	protected $fillable = [
+		'thuoc_ten',
+		'thuoc_hoachat',
+		'thuoc_soluong'
+	];
+
+	public function chitietthuocs()
 	{
-		return $this->hasOne(Chitietthuoc::class, 't_ma');
+		return $this->hasMany(Chitietthuoc::class, 'thuoc_ma');
 	}
 
-	/**
-	 * Get the gia that owns the Thuoc
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function gia()
+	public function giathuocs()
 	{
-		return $this->belongsTo(Giathuoc::class, 't_ma','t_ma')->latest('gt_ngay');
+		return $this->hasMany(Giathuoc::class, 'thuoc_ma');
 	}
 }

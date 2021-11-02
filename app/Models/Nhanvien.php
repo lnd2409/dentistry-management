@@ -15,17 +15,22 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * Class Nhanvien
  * 
  * @property int $nv_ma
- * @property string $nv_hoten
- * @property string|null $nv_sdt
- * @property string|null $nv_namsinh
- * @property string|null $nv_diachi
+ * @property string $nv_ten
  * @property string|null $nv_gioitinh
+ * @property string|null $nv_diachi
+ * @property string|null $nv_cmnd
+ * @property string|null $nv_sdt
  * @property string $username
  * @property string $password
+ * @property int $cm_ma
+ * @property int $cv_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Lichtruc $lichtruc
+ * @property Chuyenmon $chuyenmon
+ * @property Chucvu $chucvu
+ * @property Collection|Hosobenh[] $hosobenhs
+ * @property Collection|Lichtruc[] $lichtrucs
  * @property Collection|Phieuhen[] $phieuhens
  * @property Collection|Phieukham[] $phieukhams
  * @property Collection|Phieuthu[] $phieuthus
@@ -37,18 +42,25 @@ class Nhanvien extends Authenticatable
 	protected $table = 'nhanvien';
 	protected $primaryKey = 'nv_ma';
 
+	protected $casts = [
+		'cm_ma' => 'int',
+		'cv_ma' => 'int'
+	];
+
 	protected $hidden = [
 		'password'
 	];
 
 	protected $fillable = [
-		'nv_hoten',
-		'nv_sdt',
-		'nv_namsinh',
-		'nv_diachi',
+		'nv_ten',
 		'nv_gioitinh',
+		'nv_diachi',
+		'nv_cmnd',
+		'nv_sdt',
 		'username',
-		'password'
+		'password',
+		'cm_ma',
+		'cv_ma'
 	];
 
 	// public function lichtruc()
@@ -66,8 +78,16 @@ class Nhanvien extends Authenticatable
 	// 	return $this->hasMany(Phieukham::class, 'nv_ma');
 	// }
 
+<<<<<<< HEAD
 	// public function phieuthus()
 	// {
 	// 	return $this->hasMany(Phieuthu::class, 'nv_ma');
 	// }
 }
+=======
+	public function phieuthus()
+	{
+		return $this->hasMany(Phieuthu::class, 'nv_ma');
+	}
+}
+>>>>>>> 59934aeef42d81765492f9fe2c153950c695b1a1

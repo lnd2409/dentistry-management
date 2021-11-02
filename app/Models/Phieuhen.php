@@ -16,14 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $ph_ngayhen
  * @property Carbon $ph_giohen
  * @property string $ph_yeucau
- * @property string $ph_trangthai
- * @property int $nv_ma
- * @property int $hsb_ma
+ * @property int $ph_trangthai
+ * @property int|null $nv_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Khachhang $khachhang
- * @property Nhanvien $nhanvien
+ * @property Nhanvien|null $nhanvien
  *
  * @package App\Models
  */
@@ -33,8 +31,8 @@ class Phieuhen extends Model
 	protected $primaryKey = 'ph_ma';
 
 	protected $casts = [
-		'nv_ma' => 'int',
-		'hsb_ma' => 'int'
+		'ph_trangthai' => 'int',
+		'nv_ma' => 'int'
 	];
 
 	protected $dates = [
@@ -47,14 +45,8 @@ class Phieuhen extends Model
 		'ph_giohen',
 		'ph_yeucau',
 		'ph_trangthai',
-		'nv_ma',
-		'hsb_ma'
+		'nv_ma'
 	];
-
-	public function khachhang()
-	{
-		return $this->belongsTo(Khachhang::class, 'hsb_ma');
-	}
 
 	public function nhanvien()
 	{

@@ -11,11 +11,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Ca
+ * Class Phong
  * 
- * @property int $ca_ma
- * @property Carbon $ca_giobatdau
- * @property Carbon $ca_gioketthuc
+ * @property int $p_ma
+ * @property string $p_ten
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -23,23 +22,17 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Ca extends Model
+class Phong extends Model
 {
-	protected $table = 'ca';
-	protected $primaryKey = 'ca_ma';
-
-	protected $dates = [
-		'ca_giobatdau',
-		'ca_gioketthuc'
-	];
+	protected $table = 'phong';
+	protected $primaryKey = 'p_ma';
 
 	protected $fillable = [
-		'ca_giobatdau',
-		'ca_gioketthuc'
+		'p_ten'
 	];
 
 	public function lichtrucs()
 	{
-		return $this->hasMany(Lichtruc::class, 'ca_ma');
+		return $this->hasMany(Lichtruc::class, 'p_ma');
 	}
 }

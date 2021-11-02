@@ -12,10 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Chitietthuoc
  * 
- * @property float $ctt_soluong
- * @property float $ctt_dongia
- * @property int $t_ma
+ * @property int $ctt_ma
+ * @property int $ctt_soluong
+ * @property int $ctt_gia
  * @property int $pk_ma
+ * @property int $thuoc_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -27,20 +28,20 @@ use Illuminate\Database\Eloquent\Model;
 class Chitietthuoc extends Model
 {
 	protected $table = 'chitietthuoc';
-	public $incrementing = false;
+	protected $primaryKey = 'ctt_ma';
 
 	protected $casts = [
-		'ctt_soluong' => 'float',
-		'ctt_dongia' => 'float',
-		't_ma' => 'int',
-		'pk_ma' => 'int'
+		'ctt_soluong' => 'int',
+		'ctt_gia' => 'int',
+		'pk_ma' => 'int',
+		'thuoc_ma' => 'int'
 	];
 
 	protected $fillable = [
 		'ctt_soluong',
-		'ctt_dongia',
-		't_ma',
-		'pk_ma'
+		'ctt_gia',
+		'pk_ma',
+		'thuoc_ma'
 	];
 
 	public function phieukham()
@@ -50,6 +51,6 @@ class Chitietthuoc extends Model
 
 	public function thuoc()
 	{
-		return $this->belongsTo(Thuoc::class, 't_ma');
+		return $this->belongsTo(Thuoc::class, 'thuoc_ma');
 	}
 }

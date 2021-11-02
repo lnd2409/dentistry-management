@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $cv_ten
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * 
+ * @property Collection|Nhanvien[] $nhanviens
  *
  * @package App\Models
  */
@@ -27,4 +30,9 @@ class Chucvu extends Model
 	protected $fillable = [
 		'cv_ten'
 	];
+
+	public function nhanviens()
+	{
+		return $this->hasMany(Nhanvien::class, 'cv_ma');
+	}
 }

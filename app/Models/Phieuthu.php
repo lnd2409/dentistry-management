@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,11 +16,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $pt_ngaylap
  * @property float $pt_tongtien
  * @property int $nv_ma
+ * @property int $pk_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
  * @property Nhanvien $nhanvien
- * @property Collection|Phieukham[] $phieukhams
+ * @property Phieukham $phieukham
  *
  * @package App\Models
  */
@@ -32,7 +32,8 @@ class Phieuthu extends Model
 
 	protected $casts = [
 		'pt_tongtien' => 'float',
-		'nv_ma' => 'int'
+		'nv_ma' => 'int',
+		'pk_ma' => 'int'
 	];
 
 	protected $dates = [
@@ -42,7 +43,8 @@ class Phieuthu extends Model
 	protected $fillable = [
 		'pt_ngaylap',
 		'pt_tongtien',
-		'nv_ma'
+		'nv_ma',
+		'pk_ma'
 	];
 
 	public function nhanvien()
@@ -50,8 +52,8 @@ class Phieuthu extends Model
 		return $this->belongsTo(Nhanvien::class, 'nv_ma');
 	}
 
-	public function phieukhams()
+	public function phieukham()
 	{
-		return $this->hasMany(Phieukham::class, 'pt_ma');
+		return $this->belongsTo(Phieukham::class, 'pk_ma');
 	}
 }

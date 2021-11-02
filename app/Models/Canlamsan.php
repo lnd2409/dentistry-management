@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Loaicl $loaicl
- * @property Chitietphieuchitietcanlamsan $chitietphieuchitietcanlamsan
- * @property Dongium $dongium
+ * @property Loaicanlamsan $loaicanlamsan
+ * @property Collection|Giadichvucanlamsan[] $giadichvucanlamsans
+ * @property Collection|Phieuxetnghiem[] $phieuxetnghiems
  *
  * @package App\Models
  */
@@ -40,18 +41,18 @@ class Canlamsan extends Model
 		'lcls_ma'
 	];
 
-	public function loaicl()
+	public function loaicanlamsan()
 	{
-		return $this->belongsTo(Loaicl::class, 'lcls_ma');
+		return $this->belongsTo(Loaicanlamsan::class, 'lcls_ma');
 	}
 
-	public function chitietphieuchitietcanlamsan()
+	public function giadichvucanlamsans()
 	{
-		return $this->hasOne(Chitietphieuchitietcanlamsan::class, 'cls_ma');
+		return $this->hasMany(Giadichvucanlamsan::class, 'cls_ma');
 	}
 
-	public function dongia()
+	public function phieuxetnghiems()
 	{
-		return $this->belongsTo(Dongia::class, 'cls_ma','cls_ma')->latest('ngay_ma');
+		return $this->hasMany(Phieuxetnghiem::class, 'cls_ma');
 	}
 }

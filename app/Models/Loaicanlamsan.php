@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Loaicl
+ * Class Loaicanlamsan
  * 
  * @property int $lcls_ma
  * @property string $lcls_ten
@@ -23,13 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Loaicl extends Model
+class Loaicanlamsan extends Model
 {
-	protected $table = 'loaicls';
+	protected $table = 'loaicanlamsan';
 	protected $primaryKey = 'lcls_ma';
 
 	protected $fillable = [
-		'lcls_ma',
 		'lcls_ten',
 		'lcls_mota'
 	];

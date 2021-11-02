@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Loaidv
+ * Class Loaidichvu
  * 
  * @property int $ldv_ma
  * @property string $ldv_ten
@@ -23,13 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Loaidv extends Model
+class Loaidichvu extends Model
 {
-	protected $table = 'loaidv';
+	protected $table = 'loaidichvu';
 	protected $primaryKey = 'ldv_ma';
 
 	protected $fillable = [
-		'ldv_ma',
 		'ldv_ten',
 		'ldv_mota'
 	];

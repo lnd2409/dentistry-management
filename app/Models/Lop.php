@@ -11,28 +11,28 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Chuyenmon
+ * Class Lop
  * 
- * @property int $cm_ma
- * @property string $cm_ten
+ * @property int $l_id
+ * @property string $l_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Collection|Nhanvien[] $nhanviens
+ * @property Collection|SinhVien[] $sinh_viens
  *
  * @package App\Models
  */
-class Chuyenmon extends Model
+class Lop extends Model
 {
-	protected $table = 'chuyenmon';
-	protected $primaryKey = 'cm_ma';
+	protected $table = 'lop';
+	protected $primaryKey = 'l_id';
 
 	protected $fillable = [
-		'cm_ten'
+		'l_ma'
 	];
 
-	public function nhanviens()
+	public function sinh_viens()
 	{
-		return $this->hasMany(Nhanvien::class, 'cm_ma');
+		return $this->hasMany(SinhVien::class, 'l_id');
 	}
 }

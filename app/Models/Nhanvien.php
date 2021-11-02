@@ -78,16 +78,8 @@ class Nhanvien extends Authenticatable
 	// 	return $this->hasMany(Phieukham::class, 'nv_ma');
 	// }
 
-<<<<<<< HEAD
 	// public function phieuthus()
 	// {
 	// 	return $this->hasMany(Phieuthu::class, 'nv_ma');
 	// }
 }
-=======
-	public function phieuthus()
-	{
-		return $this->hasMany(Phieuthu::class, 'nv_ma');
-	}
-}
->>>>>>> 59934aeef42d81765492f9fe2c153950c695b1a1

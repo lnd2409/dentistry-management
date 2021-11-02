@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CheckAuthCustomer'=>\App\Http\Middleware\CheckAuthCustomer::class,
         'CheckAuthSatff'=>\App\Http\Middleware\CheckAuthSatff::class,
+        'CheckRole'=>CheckRole::class,
     ];
 }

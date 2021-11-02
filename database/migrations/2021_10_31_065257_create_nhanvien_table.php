@@ -23,10 +23,10 @@ class CreateNhanvienTable extends Migration
             $table->string('username');
             $table->string('password');
 
-            $table->bigInteger('cm_ma')->unsigned();
+            $table->bigInteger('cm_ma')->nullable()->unsigned();
             $table->foreign('cm_ma')->references('cm_ma')->on('chuyenmon')->onDelete('CASCADE');
 
-            $table->bigInteger('cv_ma')->unsigned();
+            $table->bigInteger('cv_ma')->nullable()->unsigned();
             $table->foreign('cv_ma')->references('cv_ma')->on('chucvu')->onDelete('CASCADE');
 
             $table->timestamps();

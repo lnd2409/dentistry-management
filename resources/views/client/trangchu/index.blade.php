@@ -29,19 +29,12 @@
                         {{-- Form đặt lịch hẹn --}}
                         <form action="{{ route('customer.datlichhen') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @if (Auth::guard('khachhang')->check())
-                                <input type="text" disabled value=" {{Auth::guard('khachhang')->user()->hsb_hoten}} " >
-                                 <input type="number" disabled  value="{{Auth::guard('khachhang')->user()->hsb_sdt}}">
-                            @else
+                          
                             <input type="text" name="hoten" placeholder="Họ tên">
-                            <small style="color: red" id="erorr_mess"></small>
+                            <input type="email"  name="email"  placeholder="Email" >
                             <input type="number"  name="sdt" id="getSdt" placeholder="Số điện thoại" >
-                            @endif
                             <input type="datetime-local" name="ngayhen" placeholder="Ngày hẹn">
-                            {{-- <div class="datepicker__item">
-                                <input type="text" name="Ngayhen" placeholder="Ngày hẹn" class="datepicker">
-                                <i class="fa fa-calendar"></i>
-                            </div> --}}
+                           
                             <select name="noidung">
                                 <option value="">---Chọn dịch vụ---</option>
                                 <option value="Advanced equipment">Advanced equipment</option>
@@ -346,7 +339,7 @@
             var sdt = $(this).val();
             $.ajax({
                 type: "post",
-                url: "{{route('customer.checkcustomer')}}",
+                url: ,
                 data: {sdt:sdt},
                 dataType: "json",
                 success: function (response) {

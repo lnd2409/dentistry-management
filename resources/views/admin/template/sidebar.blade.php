@@ -36,6 +36,15 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
+                             <a href="{{ route('admin.lichhen') }}"
+                                 class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
+                                 <i class="fas fa-th-list"></i>
+                                 <p>
+                                    Lịch hẹn
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
                              <a href="{{route('thuoc.index')}}"
                                  class="nav-link @if(Request::segment(1)=='thuoc' ) active @endif">
                                  <i class="fas fa-capsules"></i>
@@ -77,6 +86,15 @@
                                  <i class="fas fa-stethoscope"></i>
                                  <p>
                                      Xét nghiệm
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('staff.logout')}}"
+                                 class="nav-link @if(Request::segment(2)=='dang-xuat' ) active @endif">
+                                 <i class="fas fa-sign-out-alt"></i>
+                                 <p>
+                                     Đăng xuất
                                  </p>
                              </a>
                          </li>

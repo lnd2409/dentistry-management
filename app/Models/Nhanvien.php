@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class Nhanvien
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Nhanvien extends Model
+class Nhanvien extends Authenticatable
 {
 	protected $table = 'nhanvien';
 	protected $primaryKey = 'nv_ma';
@@ -50,23 +51,23 @@ class Nhanvien extends Model
 		'password'
 	];
 
-	public function lichtruc()
-	{
-		return $this->hasOne(Lichtruc::class, 'nv_ma');
-	}
+	// public function lichtruc()
+	// {
+	// 	return $this->hasOne(Lichtruc::class, 'nv_ma');
+	// }
 
-	public function phieuhens()
-	{
-		return $this->hasMany(Phieuhen::class, 'nv_ma');
-	}
+	// public function phieuhens()
+	// {
+	// 	return $this->hasMany(Phieuhen::class, 'nv_ma');
+	// }
 
-	public function phieukhams()
-	{
-		return $this->hasMany(Phieukham::class, 'nv_ma');
-	}
+	// public function phieukhams()
+	// {
+	// 	return $this->hasMany(Phieukham::class, 'nv_ma');
+	// }
 
-	public function phieuthus()
-	{
-		return $this->hasMany(Phieuthu::class, 'nv_ma');
-	}
+	// public function phieuthus()
+	// {
+	// 	return $this->hasMany(Phieuthu::class, 'nv_ma');
+	// }
 }

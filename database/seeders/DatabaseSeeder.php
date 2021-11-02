@@ -44,5 +44,8 @@ class DatabaseSeeder extends Seeder
 
        ];
        DB::table('nhanvien')->insert($nhanvien);
+        $this->call(ChucVu::class);
+        $this->call(ChuyenMon::class);
+        // $this->call(NhanVien::class);
     }
 }

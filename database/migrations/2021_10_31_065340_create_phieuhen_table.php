@@ -15,6 +15,9 @@ class CreatePhieuhenTable extends Migration
     {
         Schema::create('phieuhen', function (Blueprint $table) {
             $table->id('ph_ma');
+            $table->string('ph_hoten')->nullable();
+            $table->string('ph_sdt')->nullable();
+            $table->string('ph_email')->nullable();
             $table->date('ph_ngayhen');
             $table->time('ph_giohen');
             $table->text('ph_yeucau');

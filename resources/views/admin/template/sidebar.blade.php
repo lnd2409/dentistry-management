@@ -36,6 +36,15 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
+                             <a href="{{ route('admin.lichhen') }}"
+                                 class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
+                                 <i class="fas fa-th-list"></i>
+                                 <p>
+                                    Lịch hẹn
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
                              <a href="{{route('thuoc.index')}}"
                                  class="nav-link @if(Request::segment(1)=='thuoc' ) active @endif">
                                  <i class="fas fa-capsules"></i>
@@ -81,20 +90,11 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{route('staffs.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='quan-tri' ) active @endif">
-                                 <i class="fas fa-users"></i>
+                             <a href="{{route('staff.logout')}}"
+                                 class="nav-link @if(Request::segment(2)=='dang-xuat' ) active @endif">
+                                 <i class="fas fa-sign-out-alt"></i>
                                  <p>
-                                     Nhân viên
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="{{route('expertises.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='chuyen-mon' ) active @endif">
-                                 <i class="fas fa-id-card"></i>
-                                 <p>
-                                     Chuyên môn
+                                     Đăng xuất
                                  </p>
                              </a>
                          </li>

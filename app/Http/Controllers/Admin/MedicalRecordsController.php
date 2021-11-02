@@ -12,5 +12,5 @@ class MedicalRecordsController extends Controller
         return view('admin.medical_records.index', compact('hoSoBenh'));
     }
 
-    
+
 }

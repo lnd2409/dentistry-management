@@ -30,11 +30,11 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <ul class="header__top__left">
-                            <li><i class="fa fa-user"></i>@if (Auth::guard('khachhang')->check())
+                            {{-- <li><i class="fa fa-user"></i>@if (Auth::guard('khachhang')->check())
                                 {{Auth::guard('khachhang')->user()->hsb_hoten}}
                                 @else
                                 Guest
-                            @endif</li>
+                            @endif</li> --}}
                             <li><i class="fa fa-map-marker"></i>Khu II, đường 3/2, P. Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ.</li>
                             <li><i class="fa fa-clock-o"></i> <span  id="digital-clock"></span> </li>
                         </ul>
@@ -76,11 +76,11 @@
                             </ul>
                         </nav>
                         <div class="header__btn">
-                             @if (Auth::guard('khachhang')->check())
-                               <a href="{{ route('customer.logout') }}" class="primary-btn">Đăng xuất</a>
-                             @else
-                                <a href="{{ route('customer.login') }}" class="primary-btn">Đăng nhập/ Đăng kí</a>
-                             @endif
+                             {{-- @if (Auth::guard('khachhang')->check()) --}}
+                               {{-- <a href="{{ route('customer.logout') }}" class="primary-btn">Đăng xuất</a> --}}
+                             {{-- @else --}}
+                                {{-- <a href="{{ route('customer.login') }}" class="primary-btn">Đăng nhập/ Đăng kí</a> --}}
+                             {{-- @endif --}}
                         </div>
                     </div>
                 </div>

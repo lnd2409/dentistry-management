@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,9 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Dongium $dongium
- * @property Giadv $giadv
- * @property Lichtruc $lichtruc
+ * @property Collection|Giadichvucanlamsan[] $giadichvucanlamsans
  *
  * @package App\Models
  */
@@ -33,22 +32,11 @@ class Ngay extends Model
 	];
 
 	protected $fillable = [
-		'ngay_ma',
 		'ngay'
-	];	
+	];
 
-	public function dongium()
+	public function giadichvucanlamsans()
 	{
-		return $this->hasOne(Dongium::class, 'ngay_ma');
-	}
-
-	public function giadv()
-	{
-		return $this->hasOne(Giadv::class, 'ngay_ma');
-	}
-
-	public function lichtruc()
-	{
-		return $this->hasOne(Lichtruc::class, 'ngay_ma');
+		return $this->hasMany(Giadichvucanlamsan::class, 'ngay_ma');
 	}
 }

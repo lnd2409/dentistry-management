@@ -80,6 +80,24 @@
                                  </p>
                              </a>
                          </li>
+                         <li class="nav-item">
+                             <a href="{{route('staffs.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='quan-tri' ) active @endif">
+                                 <i class="fas fa-users"></i>
+                                 <p>
+                                     Nhân viên
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('expertises.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='chuyen-mon' ) active @endif">
+                                 <i class="fas fa-id-card"></i>
+                                 <p>
+                                     Chuyên môn
+                                 </p>
+                             </a>
+                         </li>
 
 
                      </ul>

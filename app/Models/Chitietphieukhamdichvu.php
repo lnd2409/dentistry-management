@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Chitietphieukhamdichvu
  * 
+ * @property int $ctpkdv_id
  * @property int $dv_ma
  * @property int $pk_ma
  * @property Carbon|null $created_at
@@ -25,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chitietphieukhamdichvu extends Model
 {
 	protected $table = 'chitietphieukhamdichvu';
-	public $incrementing = false;
+	protected $primaryKey = 'ctpkdv_id';
 
 	protected $casts = [
 		'dv_ma' => 'int',

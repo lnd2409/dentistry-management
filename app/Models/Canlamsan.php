@@ -55,4 +55,8 @@ class Canlamsan extends Model
 	{
 		return $this->hasMany(Phieuxetnghiem::class, 'cls_ma');
 	}
+
+	public function dongia(){
+		return $this->belongsTo(Giadichvucanlamsan::class, 'cls_ma','cls_ma')->latest('ngay_ma');
+	}
 }

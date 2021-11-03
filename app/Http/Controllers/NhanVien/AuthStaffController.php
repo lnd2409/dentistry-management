@@ -29,14 +29,14 @@ class AuthStaffController extends Controller
      public function handleLogin(Request $request)
     {
         $arrUser = [
-        'username' => $request->username,
-        'password' =>$request->password
-    ];
+            'username' => $request->username,
+            'password' =>$request->password
+        ];
         // dd($arrUser);
-    if (Auth::guard('nhanvien')->attempt($arrUser)) {
-        
-         return view('admin.template.layout');
-        }
+        if (Auth::guard('nhanvien')->attempt($arrUser)) {
+            
+            return view('admin.template.layout');
+            }
         else {
             dd("Đăng nhập thất bại!");
         }

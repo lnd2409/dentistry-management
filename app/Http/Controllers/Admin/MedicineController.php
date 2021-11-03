@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Thuoc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicineController extends Controller
 {
@@ -38,14 +39,20 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        $thuoc=Thuoc::create($request->all());
-        $thuoc->gia()->create([
-            't_ma'=>$thuoc->t_ma,
-            'gt_ngay'=>date('Y-m-d H:i:s'),
-            'gt_gia'=>$request->gt_gia
-        ]);
+        DB::beginTransaction();
+        try {
+            $thuoc = Thuoc::create($request->all());
+            $thuoc->gia()->create([
+                't_ma' => $thuoc->t_ma,
+                'gt_ngay' => date('Y-m-d H:i:s'),
+                'gt_gia' => $request->gt_gia
+            ]);
 
-        return redirect()->route('thuoc.index')->with('success', 'Đã thêm thuốc');
+            DB::commit();
+            return redirect()->route('thuoc.index')->with('success', 'Đã thêm thuốc');
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
     }
 
     /**
@@ -79,17 +86,22 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Thuoc $thuoc)
     {
-        $thuoc->update($request->all());
-        if($request->gt_gia!= $thuoc->gia->gt_gia){
-            $thuoc->gia()->create([
-                't_ma'=>$thuoc->t_ma,
-                'gt_ngay'=>date('Y-m-d H:i:s'),
-                'gt_gia'=>$request->gt_gia
-            ]);
+        DB::beginTransaction();
+        try {
+            $thuoc->update($request->all());
+            if ($request->gt_gia != $thuoc->gia->gt_gia) {
+                $thuoc->gia()->create([
+                    't_ma' => $thuoc->t_ma,
+                    'gt_ngay' => date('Y-m-d H:i:s'),
+                    'gt_gia' => $request->gt_gia
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('thuoc.index')->with('success', 'Đã cập nhật thuốc');
+        } catch (\Exception $e) {
+            DB::rollBack();
         }
-
-        return redirect()->route('thuoc.index')->with('success', 'Đã cập nhật thuốc');
-
     }
 
     /**

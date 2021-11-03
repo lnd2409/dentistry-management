@@ -82,4 +82,14 @@ class Nhanvien extends Authenticatable
 	// {
 	// 	return $this->hasMany(Phieuthu::class, 'nv_ma');
 	// }
+
+	/**
+	 * Get the chucvu that owns the Nhanvien
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function chucvu()
+	{
+		return $this->belongsTo(Chucvu::class, 'cv_ma');
+	}
 }

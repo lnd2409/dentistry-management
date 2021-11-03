@@ -224,7 +224,7 @@ table{
 	font-size: 24px;
 	font-weight: 300;
 }
-.hero .text h2 span{
+.hero .text h2 p{
 	font-weight: 600;
 	color: #000;
 }
@@ -297,7 +297,7 @@ ul.social li{
           	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           		<tr>
           			<td class="logo" style="text-align: center;">
-			            <h1><a href="#">BỆNH VIỆN PND SOLUTIONS</a></h1>
+			            <h1><a href="#">BỆNH VIỆN xxx</a></h1>
 			          </td>
           		</tr>
           	</table>
@@ -309,18 +309,19 @@ ul.social li{
             	<tr>
             		<td style="padding: 0 2.5em; text-align: center; padding-bottom: 3em;">
             			<div class="text">
-            				<h2>MÃ PHIẾU KHÁM</h2>
+            				<h2>PHIẾU KHÁM</h2>
             			</div>
             		</td>
             	</tr>
             	<tr>
 			          <td style="text-align: center;">
 			          	<div class="text-author">
-				          	<h3 class="name">Họ tên: </h3>
-				          	<p class="position">Số điện thoại:</p>
-				          	<p class="position">Email:</p>
-				          	<p class="position">Ngày hẹn:</p>
-				          	<p class="position">Mã phiếu hẹn:</p>
+				          	<h3 class="name">Họ tên: <strong>{{$ph_hoten}}</strong></h3>
+				          	<p class="position">Số điện thoại: {{$ph_sdt}} </p>
+				          	<p class="position">Email: {{$ph_email}}</p>
+				          	<p class="position">Ngày hẹn: <span style="color: red">{{$ph_ngayhen}} -  {{$ph_giohen}}</span></p>
+				          	<p class="position">Mã phiếu hẹn: <strong>{{$makhambenh}}</strong></p>
+				          	<p class="position">Nội dung: <i>{{$ph_yeucau}}</i></p>
 			           	</div>
 			          </td>
 			        </tr>
@@ -350,8 +351,8 @@ ul.social li{
                       <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
                       	<h3 class="heading">Contact Info</h3>
                       	<ul>
-					                <li><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-					                <li><span class="text">+2 392 3929 210</span></a></li>
+					                <li><p class="text">203 Fake St. Mountain View, San Francisco, California, USA</p></li>
+					                <li><p class="text">+2 392 3929 210</p></a></li>
 					              </ul>
                       </td>
                     </tr>

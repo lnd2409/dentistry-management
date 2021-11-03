@@ -40,7 +40,7 @@
                                  class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
                                  <i class="fas fa-th-list"></i>
                                  <p>
-                                    Lịch hẹn
+                                     Lịch hẹn
                                  </p>
                              </a>
                          </li>
@@ -58,7 +58,7 @@
                                  class="nav-link @if(Request::segment(1)=='loai-dich-vu' ) active @endif">
                                  <i class="fas fa-prescription-bottle-alt"></i>
                                  <p>
-                                     Loai dịch vụ
+                                     Loại dịch vụ
                                  </p>
                              </a>
                          </li>
@@ -90,11 +90,38 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{route('staff.logout')}}"
-                                 class="nav-link @if(Request::segment(2)=='dang-xuat' ) active @endif">
-                                 <i class="fas fa-sign-out-alt"></i>
+                             <a href="{{route('staffs.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='quan-tri' ) active @endif">
+                                 <i class="fas fa-users"></i>
                                  <p>
-                                     Đăng xuất
+                                     Nhân viên
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('schedules.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='lich-truc' ) active @endif">
+                                 <i class="far fa-calendar-alt"></i>
+                                 <p>
+                                     Lịch trực
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('expertises.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='chuyen-mon' ) active @endif">
+                                 <i class="fas fa-id-card"></i>
+                                 <p>
+                                     Chuyên môn
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('staff.logout')}}"
+                                 class="nav-link @if(Request::segment(2)=='admin/dang-xuat' ) active @endif">
+                                 <i class="fas fa-id-card"></i>
+                                 <p>
+                                    Đăng xuất
                                  </p>
                              </a>
                          </li>

@@ -32,14 +32,14 @@ class Lichtruc extends Model
 
 	protected $casts = [
 		'ca_ma' => 'int',
-		'p_ma' => 'int',
-		'nv_ma' => 'int'
+		'nv_ma' => 'int',
+		'ngay_ma'
 	];
 
 	protected $fillable = [
 		'ca_ma',
-		'p_ma',
-		'nv_ma'
+		'nv_ma',
+		'ngay_ma'
 	];
 
 	public function ca()
@@ -52,8 +52,13 @@ class Lichtruc extends Model
 		return $this->belongsTo(Nhanvien::class, 'nv_ma');
 	}
 
-	public function phong()
+	/**
+	 * Get the ngay that owns the Lichtruc
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function ngay()
 	{
-		return $this->belongsTo(Phong::class, 'p_ma');
+		return $this->belongsTo(Ngay::class, 'ngay_ma');
 	}
 }

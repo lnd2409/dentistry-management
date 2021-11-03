@@ -28,11 +28,6 @@ class Ca extends Model
 	protected $table = 'ca';
 	protected $primaryKey = 'ca_ma';
 
-	protected $dates = [
-		'ca_giobatdau',
-		'ca_gioketthuc'
-	];
-
 	protected $fillable = [
 		'ca_giobatdau',
 		'ca_gioketthuc'

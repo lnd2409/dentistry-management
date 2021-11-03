@@ -15,8 +15,8 @@ class CreateCaTable extends Migration
     {
         Schema::create('ca', function (Blueprint $table) {
             $table->id('ca_ma');
-            $table->dateTime('ca_giobatdau');
-            $table->dateTime('ca_gioketthuc');
+            $table->string('ca_giobatdau');
+            $table->string('ca_gioketthuc');
             $table->timestamps();
         });
     }

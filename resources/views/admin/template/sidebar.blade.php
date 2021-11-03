@@ -40,7 +40,7 @@
                                  class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
                                  <i class="fas fa-th-list"></i>
                                  <p>
-                                    Lịch hẹn
+                                     Lịch hẹn
                                  </p>
                              </a>
                          </li>
@@ -95,6 +95,15 @@
                                  <i class="fas fa-users"></i>
                                  <p>
                                      Nhân viên
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('schedules.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='lich-truc' ) active @endif">
+                                 <i class="far fa-calendar-alt"></i>
+                                 <p>
+                                     Lịch trực
                                  </p>
                              </a>
                          </li>

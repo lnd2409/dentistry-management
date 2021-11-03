@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loaicanlamsan;
 use App\Models\Loaicl;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class TestTypeController extends Controller
      */
     public function index()
     {
-        $loaicls = Loaicl::all();
+        $loaicls = Loaicanlamsan::all();
 
         return view('admin.test_types.index', compact('loaicls'));
     }
@@ -38,7 +39,7 @@ class TestTypeController extends Controller
      */
     public function store(Request $request)
     {
-        Loaicl::create($request->all());
+        Loaicanlamsan::create($request->all());
 
         return redirect()->route('loaixetnghiem.index')->with('success', 'Thêm loại cận lâm sàn thành công');
     }
@@ -49,7 +50,7 @@ class TestTypeController extends Controller
      * @param  \App\Models\Loaicl $loaicl
      * @return \Illuminate\Http\Response
      */
-    public function show(Loaicl $loaicl)
+    public function show(Loaicanlamsan $loaicl)
     {
         return view('admin.test_types.show', compact('loaicl'));
     }
@@ -60,7 +61,7 @@ class TestTypeController extends Controller
      * @param  \App\Models\Loaicl $loaicl
      * @return \Illuminate\Http\Response
      */
-    public function edit(Loaicl $loaicl)
+    public function edit(Loaicanlamsan $loaicl)
     {
         return view('admin.test_types.edit', compact('loaicl'));
     }
@@ -72,7 +73,7 @@ class TestTypeController extends Controller
      * @param  \App\Models\Loaicl $loaicl
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loaicl $loaicl)
+    public function update(Request $request, Loaicanlamsan $loaicl)
     {
         $loaicl->update($request->all());
 
@@ -85,7 +86,7 @@ class TestTypeController extends Controller
      * @param  \App\Models\Loaicl $loaicl
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loaicl $loaicl)
+    public function destroy(Loaicanlamsan $loaicl)
     {
         $loaicl->delete();
 

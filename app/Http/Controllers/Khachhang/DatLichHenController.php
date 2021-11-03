@@ -8,6 +8,7 @@ Use Alert;
 use DB;
 use Session;
 use Auth;
+use Mail;
 use App\Models\KhachHang;
 class DatLichHenController extends Controller
 {
@@ -91,6 +92,19 @@ class DatLichHenController extends Controller
             'ph_trangthai'=>$tt,
             'nv_ma'=>$nvMa
         ]);
+
+        $lichHen = DB::table('phieuhen')->where('ph_ma',$id)->first();
+        $lichHen->makhambenh='PND'.rand(1000,99999);
+        $lichHen=(array)$lichHen;
+        //Cập nhật trạng thái thành công và gửi mã phiếu hẹn đến khách hàng qua mail
+        if($tt == 1)
+        {
+            Mail::send('admin.lichhen.send-mail',$lichHen,function($message) use($lichHen){
+                $message->from('pndsolutions2021@mail.com','BỆNH VIỆN xx');
+                $message->to($lichHen['ph_email'],$lichHen['ph_email']);
+                $message->subject('PHIẾU HẸN KHÁM BỆNH');
+            });
+        }
         return redirect()->back();
     }
   

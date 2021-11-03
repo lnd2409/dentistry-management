@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\TestTypeController;
 
+
+use App\Http\Controllers\TestSendMailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,3 +137,6 @@ Route::group(['middleware' => 'CheckRole:5'], function () {//admin
         Route::post('/xoa/{chuyenmon}', [ExpertiseController::class,'destroy'])->name('destroy');
     });
 });
+
+
+Route::get('/mail',[TestSendMailController::class,'index'])->name('sendmail');

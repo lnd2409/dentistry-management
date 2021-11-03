@@ -53,7 +53,8 @@
                                  <span class="badge bg-danger">Đã hủy</span>
                              @endif</td>
                              <td>
-                                <form action="{{ route('admin.capnhatlichhen') }}" method="post" id="submitForm">  
+                               @if ($item->ph_trangthai != 3)
+                                  <form action="{{ route('admin.capnhatlichhen') }}" method="post" id="submitForm">  
                                     @csrf
                                     <input type="hidden" name="ph_ma" value=" {{$item->ph_ma}} ">
                                     <select name="trangthai" id="clickStatus" class="form-control">
@@ -63,7 +64,10 @@
                                         <option value="1" > Đã xác nhận</option>
                                         <option value="0" > Đang xử lý</option>
                                     </select>
-                                </form>
+                                  </form>
+                                @else
+                                ----
+                               @endif
                              </td>
                          </tr>
                      @endforeach

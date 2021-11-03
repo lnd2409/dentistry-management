@@ -15,6 +15,7 @@ class CreateHosobenhTable extends Migration
     {
         Schema::create('hosobenh', function (Blueprint $table) {
             $table->id('hsb_ma');
+            $table->bigInteger('hsb_maso');
             $table->date('hsb_ngaylap');
             $table->string('hsb_hotenkhachhang');
             $table->string('hsb_sdt');
@@ -25,7 +26,7 @@ class CreateHosobenhTable extends Migration
 
             $table->bigInteger('nv_ma')->nullable()->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');
-            
+
             $table->timestamps();
         });
     }

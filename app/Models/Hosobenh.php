@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Hosobenh
- * 
+ *
  * @property int $hsb_ma
  * @property Carbon $hsb_ngaylap
  * @property string $hsb_hotenkhachhang
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $nv_ma
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Nhanvien|null $nhanvien
  * @property Collection|Phieukham[] $phieukhams
  *
@@ -44,6 +44,7 @@ class Hosobenh extends Model
 	];
 
 	protected $fillable = [
+        'hsb_maso',
 		'hsb_ngaylap',
 		'hsb_hotenkhachhang',
 		'hsb_sdt',

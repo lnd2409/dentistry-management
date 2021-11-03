@@ -35,7 +35,8 @@ class Giadichvucanlamsan extends Model
 
 	protected $fillable = [
 		'ngay_ma',
-		'cls_ma'
+		'cls_ma',
+		'gdvcls_gia'
 	];
 
 	public function canlamsan()

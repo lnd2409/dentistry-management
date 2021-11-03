@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         'nv_gioitinh'=>'nam',
         'username'=>'admin',
         'password' => bcrypt('12345'),
+        'cm_ma' => 1,
+        'cv_ma' => 2,
        ],
        [
         'nv_ten'=>'Lê Ngọc Đức',
@@ -31,6 +33,8 @@ class DatabaseSeeder extends Seeder
         'nv_gioitinh'=>'Nữ',
         'username'=>'lnduc',
         'password' => bcrypt('12345'),
+        'cm_ma' => 1,
+        'cv_ma' => 2,
        ],
        [
         'nv_ten'=>'Lê Minh Nghĩa',
@@ -40,6 +44,8 @@ class DatabaseSeeder extends Seeder
         'nv_gioitinh'=>'Nữ',
         'username'=>'lnnghia',
         'password' => bcrypt('12345'),
+        'cm_ma' => 1,
+        'cv_ma' => 2,
        ],
 
        ];

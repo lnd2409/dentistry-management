@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loaidichvu;
 use App\Models\Loaidv;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ServiceTypeController extends Controller
      */
     public function index()
     {
-        $loaidv = Loaidv::all();
+        $loaidv = Loaidichvu::all();
 
         return view('admin.service_types.index', compact('loaidv'));
     }
@@ -38,7 +39,7 @@ class ServiceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        Loaidv::create($request->all());
+        Loaidichvu::create($request->all());
 
         return redirect()->route('loaidichvu.index')->with('success','Tạo thành công');
     }
@@ -49,7 +50,7 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\Loaidv $loaidv
      * @return \Illuminate\Http\Response
      */
-    public function show(Loaidv $loaidv)
+    public function show(Loaidichvu $loaidv)
     {
         return view('admin.service_types.show', compact('loaidv'));
     }
@@ -60,7 +61,7 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\Loaidv $loaidv
      * @return \Illuminate\Http\Response
      */
-    public function edit(Loaidv $loaidv)
+    public function edit(Loaidichvu $loaidv)
     {
         return view('admin.service_types.edit', compact('loaidv'));
     }
@@ -72,7 +73,7 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\Loaidv $loaidv
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loaidv $loaidv)
+    public function update(Request $request, Loaidichvu $loaidv)
     {
         $loaidv->update($request->all());
 
@@ -85,7 +86,7 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\Loaidv $loaidv
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loaidv $loaidv)
+    public function destroy(Loaidichvu $loaidv)
     {
         $loaidv->delete();
 

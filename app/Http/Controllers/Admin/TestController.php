@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Canlamsan;
+use App\Models\Loaicanlamsan;
 use App\Models\Loaicl;
 use App\Models\Ngay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -29,9 +31,9 @@ class TestController extends Controller
      */
     public function create()
     {
-        $lcls=Loaicl::all();
+        $lcls = Loaicanlamsan::all();
 
-        return view('admin.tests.create',compact('lcls'));
+        return view('admin.tests.create', compact('lcls'));
     }
 
     /**
@@ -42,15 +44,21 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        $cls=Canlamsan::create($request->all());
-        $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
-        $cls->dongia()->create([
-            'cls_ma'=>$cls->cls_ma,
-            'ngay_ma'=>$ngay->ngay_ma,
-            'dongia'=>$request->dongia
-           
-        ]);
-        return redirect()->route('xetnghiem.index')->with('success', 'Thêm thành công');
+        DB::beginTransaction();
+        try {
+            $cls = Canlamsan::create($request->all());
+            $ngay = Ngay::create(['ngay' => date('Y-m-d')]);
+            $cls->dongia()->create([
+                'cls_ma' => $cls->cls_ma,
+                'ngay_ma' => $ngay->ngay_ma,
+                'gdvcls_gia' => $request->dongia
+
+            ]);
+            DB::commit();
+            return redirect()->route('xetnghiem.index')->with('success', 'Thêm thành công');
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
     }
 
     /**
@@ -72,9 +80,9 @@ class TestController extends Controller
      */
     public function edit(Canlamsan $canlamsan)
     {
-        $lcls=Loaicl::all();
+        $lcls = Loaicanlamsan::all();
 
-        return view('admin.tests.edit', compact('canlamsan','lcls'));
+        return view('admin.tests.edit', compact('canlamsan', 'lcls'));
     }
 
     /**
@@ -86,17 +94,23 @@ class TestController extends Controller
      */
     public function update(Request $request, Canlamsan $canlamsan)
     {
-        $canlamsan->update($request->all());
-        if($request->dongia!= $canlamsan->dongia->dongia){
-            $ngay=Ngay::create(['ngay'=>date('Y-m-d')]);
-            $canlamsan->dongia()->create([
-                'cls_ma'=>$canlamsan->cls_ma,
-                'ngay_ma'=>$ngay->ngay_ma,
-                'dongia'=>$request->dongia
-            ]);
-        }
+        DB::beginTransaction();
+        try {
+            $canlamsan->update($request->all());
+            if ($request->dongia != $canlamsan->dongia->dongia) {
+                $ngay = Ngay::create(['ngay' => date('Y-m-d')]);
+                $canlamsan->dongia()->create([
+                    'cls_ma' => $canlamsan->cls_ma,
+                    'ngay_ma' => $ngay->ngay_ma,
+                    'gdvcls_gia' => $request->dongia
+                ]);
+            }
 
-        return redirect()->route('xetnghiem.index')->with('success', 'Cập nhật thành công');
+            DB::commit();
+            return redirect()->route('xetnghiem.index')->with('success', 'Cập nhật thành công');
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
     }
 
     /**

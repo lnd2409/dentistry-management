@@ -15,6 +15,7 @@ class CreateGiadichvucanlamsanTable extends Migration
     {
         Schema::create('giadichvucanlamsan', function (Blueprint $table) {
             $table->id('gdvcls_id');
+            $table->integer('gdvcls_gia');
 
             $table->bigInteger('ngay_ma')->unsigned();
             $table->foreign('ngay_ma')->references('ngay_ma')->on('ngay')->onDelete('CASCADE');

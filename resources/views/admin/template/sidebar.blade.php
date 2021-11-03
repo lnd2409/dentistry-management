@@ -90,11 +90,20 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="{{route('staff.logout')}}"
-                                 class="nav-link @if(Request::segment(2)=='dang-xuat' ) active @endif">
-                                 <i class="fas fa-sign-out-alt"></i>
+                             <a href="{{route('staffs.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='quan-tri' ) active @endif">
+                                 <i class="fas fa-users"></i>
                                  <p>
-                                     Đăng xuất
+                                     Nhân viên
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('expertises.index')}}"
+                                 class="nav-link @if(Request::segment(1)=='chuyen-mon' ) active @endif">
+                                 <i class="fas fa-id-card"></i>
+                                 <p>
+                                     Chuyên môn
                                  </p>
                              </a>
                          </li>

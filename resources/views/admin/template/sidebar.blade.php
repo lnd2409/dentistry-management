@@ -58,7 +58,7 @@
                                  class="nav-link @if(Request::segment(1)=='loai-dich-vu' ) active @endif">
                                  <i class="fas fa-prescription-bottle-alt"></i>
                                  <p>
-                                     Loai dịch vụ
+                                     Loại dịch vụ
                                  </p>
                              </a>
                          </li>
@@ -113,6 +113,15 @@
                                  <i class="fas fa-id-card"></i>
                                  <p>
                                      Chuyên môn
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="{{route('staff.logout')}}"
+                                 class="nav-link @if(Request::segment(2)=='admin/dang-xuat' ) active @endif">
+                                 <i class="fas fa-id-card"></i>
+                                 <p>
+                                    Đăng xuất
                                  </p>
                              </a>
                          </li>

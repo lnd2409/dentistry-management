@@ -45,8 +45,8 @@ class Thuoc extends Model
 		return $this->hasMany(Chitietthuoc::class, 'thuoc_ma');
 	}
 
-	public function giathuocs()
+	public function gia()
 	{
-		return $this->hasMany(Giathuoc::class, 'thuoc_ma');
+		return $this->hasOne(Giathuoc::class, 'thuoc_ma')->latest('gt_ma');
 	}
 }

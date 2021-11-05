@@ -16,7 +16,7 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        $thuoc = Thuoc::all();
+        $thuoc = Thuoc::with('gia')->get();
 
         return view('admin.medicines.index', compact('thuoc'));
     }
@@ -43,7 +43,7 @@ class MedicineController extends Controller
         try {
             $thuoc = Thuoc::create($request->all());
             $thuoc->gia()->create([
-                't_ma' => $thuoc->t_ma,
+                'thuoc_ten' => $thuoc->t_ma,
                 'gt_ngay' => date('Y-m-d H:i:s'),
                 'gt_gia' => $request->gt_gia
             ]);
@@ -51,6 +51,7 @@ class MedicineController extends Controller
             DB::commit();
             return redirect()->route('thuoc.index')->with('success', 'Đã thêm thuốc');
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
         }
     }
@@ -91,7 +92,7 @@ class MedicineController extends Controller
             $thuoc->update($request->all());
             if ($request->gt_gia != $thuoc->gia->gt_gia) {
                 $thuoc->gia()->create([
-                    't_ma' => $thuoc->t_ma,
+                    'thuoc_ma' => $thuoc->t_ma,
                     'gt_ngay' => date('Y-m-d H:i:s'),
                     'gt_gia' => $request->gt_gia
                 ]);

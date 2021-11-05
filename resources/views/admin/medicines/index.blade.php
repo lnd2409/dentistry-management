@@ -22,6 +22,7 @@
                 <th>Mã thuốc</th>
                 <th>Tên thuốc</th>
                 <th>Hóa chất</th>
+                <th>Số lượng</th>
                 <th>Giá</th>
                 <th>Tác vụ</th>
             </tr>
@@ -29,10 +30,11 @@
         <tbody>
             @foreach ($thuoc as $item)
             <tr>
-                <td>{{$item->t_ma}}</td>
-                <td>{{$item->t_ten}}</td>
-                <td>{{$item->t_hoachat}}</td>
-                <td>{{number_format($item->gia->gt_gia)}}</td>
+                <td>{{$item->thuoc_ma}}</td>
+                <td>{{$item->thuoc_ten}}</td>
+                <td>{{$item->thuoc_hoachat}}</td>
+                <td>{{number_format($item->thuoc_soluong)}}</td>
+                <td>{{number_format($item->gia->gt_gia)??''}}</td>
                 <td>
                     <form action="{{route('thuoc.destroy',$item)}}" method="post">
                         @csrf

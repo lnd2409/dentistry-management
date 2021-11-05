@@ -17,18 +17,9 @@
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     locale: 'vi',
-                    editable: true,
                     selectable: true,
-                    eventDrop: function (info) {
 
-                        if (!confirm("Bạn có chắc chắn với sự thay đổi này?")) {
-                            info.revert();
-                        }
-                    },
                     dropAccept: '.cool-event',
-                    drop: function () {
-                        alert('dropped!');
-                    },
                     dateClick: function (info) {
                         $('#btnModal').click();
                         $("#ngay_ma").val(info.dateStr);

@@ -53,4 +53,9 @@ class Dichvu extends Model
 					->withPivot('ctpkdv_id')
 					->withTimestamps();
 	}
+
+	public function giadv()
+	{
+		return $this->belongsTo(Giadichvu::class, 'dv_ma','dv_ma')->latest('ngay_ma');
+	}
 }

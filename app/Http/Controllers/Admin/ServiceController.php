@@ -50,14 +50,14 @@ class ServiceController extends Controller
             $dv->giadv()->create([
                 'dv_ma' => $dv->dv_ma,
                 'ngay_ma' => $ngay->ngay_ma,
-                'dongia' => $request->dongia
+                'gdv_gia' => $request->dongia
             ]);
 
-            return redirect()->route('dichvu.index')->with('success', 'Thêm dịch vụ thành công');
 
             DB::commit();
             return redirect()->route('dichvu.index')->with('success', 'Cập nhật dịch vụ thành công');
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
         }
     }
@@ -104,7 +104,7 @@ class ServiceController extends Controller
                 $dichvu->giadv()->create([
                     'dv_ma' => $dichvu->dv_ma,
                     'ngay_ma' => $ngay->ngay_ma,
-                    'dongia' => $request->dongia
+                    'gdv_gia' => $request->dongia
                 ]);
             }
 

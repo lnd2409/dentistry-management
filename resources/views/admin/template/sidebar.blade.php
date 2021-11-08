@@ -37,7 +37,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="{{ route('admin.lichhen') }}"
-                                 class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
+                                 class="nav-link @if(Request::segment(1)=='lich-hen' ) active @endif">
                                  <i class="fas fa-th-list"></i>
                                  <p>
                                      Lịch hẹn
@@ -46,7 +46,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('thuoc.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='thuoc' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='thuoc' ) active @endif">
                                  <i class="fas fa-capsules"></i>
                                  <p>
                                      Thuốc
@@ -55,7 +55,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('loaidichvu.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='loai-dich-vu' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='loai-dich-vu' ) active @endif">
                                  <i class="fas fa-prescription-bottle-alt"></i>
                                  <p>
                                      Loại dịch vụ
@@ -64,7 +64,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('dichvu.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='dich-vu' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='dich-vu' ) active @endif">
                                  <i class="fas fa-prescription-bottle-alt"></i>
                                  <p>
                                      Dịch vụ
@@ -73,7 +73,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('loaixetnghiem.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='loai-xet-nghiem' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='loai-xet-nghiem' ) active @endif">
                                  <i class="fas fa-stethoscope"></i>
                                  <p>
                                      Loại xét nghiệm
@@ -82,7 +82,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('xetnghiem.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='xet-nghiem' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='xet-nghiem' ) active @endif">
                                  <i class="fas fa-stethoscope"></i>
                                  <p>
                                      Xét nghiệm
@@ -91,7 +91,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('staffs.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='quan-tri' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='quan-tri' ) active @endif">
                                  <i class="fas fa-users"></i>
                                  <p>
                                      Nhân viên
@@ -100,7 +100,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('schedules.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='lich-truc' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='lich-truc' ) active @endif">
                                  <i class="far fa-calendar-alt"></i>
                                  <p>
                                      Lịch trực
@@ -109,7 +109,7 @@
                          </li>
                          <li class="nav-item">
                              <a href="{{route('expertises.index')}}"
-                                 class="nav-link @if(Request::segment(1)=='chuyen-mon' ) active @endif">
+                                 class="nav-link @if(Request::segment(2)=='chuyen-mon' ) active @endif">
                                  <i class="fas fa-id-card"></i>
                                  <p>
                                      Chuyên môn
@@ -121,7 +121,7 @@
                                  class="nav-link @if(Request::segment(2)=='admin/dang-xuat' ) active @endif">
                                  <i class="fas fa-id-card"></i>
                                  <p>
-                                    Đăng xuất
+                                     Đăng xuất
                                  </p>
                              </a>
                          </li>

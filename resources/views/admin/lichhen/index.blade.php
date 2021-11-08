@@ -9,16 +9,19 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Danh sách đặt lịch hẹn</h3>
+                <h3 class="card-title">Danh sách đặt lịch hẹn</h3> &nbsp;&nbsp;&nbsp; <span> <a href="{{ route('admin.themlichhen') }}"> <i class="fa fa-plus" aria-hidden="true"></i> Thêm lịch hẹn</a> </span>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                 <form action="{{ route('admin.timkiemtlichhen') }}" method="post">
+                   @csrf
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Tìm kiếm">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
                   </div>
+                 </form>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -26,6 +29,7 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
+                      <th>Mã phiếu</th>
                       <th>Khách hàng</th>
                       <th>Số điện thoại</th>
                       {{-- <th>Email</th> --}}
@@ -38,6 +42,13 @@
                   <tbody>
                     @foreach ($lichhen as $item)
                          <tr>
+                           <td>
+                             @if ($item->ph_maso !=NULL)
+                                 <strong> {{$item->ph_maso}}</strong>
+                             @else
+                                 ---
+                             @endif
+                           </td>
                              <td> {{$item->ph_hoten}} </td>
                              <td> {{$item->ph_sdt}} </td>
                              {{-- <td> {{$item->ph_email}} </td> --}}

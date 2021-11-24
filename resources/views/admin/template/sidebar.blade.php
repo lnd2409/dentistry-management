@@ -27,23 +27,43 @@
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                  <li class="nav-item has-treeview menu-open">
-                     <a href="#" class="nav-link active">
-                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                         <p>
-                             Dashboard
-                             <i class="right fas fa-angle-left"></i>
-                         </p>
-                     </a>
                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.lichhen') }}"
+                                 class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
+                                 <i class="fas fa-tachometer-alt"></i>
+                                 <p>
+                                    Bảng điều khiển
+                                 </p>
+                            </a>
+                        </li>
                          <li class="nav-item">
-                             <a href="{{ route('admin.lichhen') }}"
+                            <a href="{{ route('admin.lichhen') }}"
                                  class="nav-link @if(Request::segment(2)=='lich-hen' ) active @endif">
                                  <i class="fas fa-th-list"></i>
                                  <p>
                                      Lịch hẹn
                                  </p>
-                             </a>
+                            </a>
                          </li>
+                         <li class="nav-item">
+                            <a href="{{ route('medical.appointment.index') }}"
+                                class="nav-link @if(Request::segment(1)=='phieu-kham' ) active @endif">
+                                <i class="fas fa-th-list"></i>
+                                <p>
+                                    Phiếu khám
+                                </p>
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a href="{{ route('medical.record.index') }}"
+                                class="nav-link @if(Request::segment(1)=='ho-so-benh' ) active @endif">
+                                <i class="fas fa-th-list"></i>
+                                <p>
+                                    Danh sách hồ sơ bệnh
+                                </p>
+                            </a>
+                        </li>
                          <li class="nav-item">
                              <a href="{{route('thuoc.index')}}"
                                  class="nav-link @if(Request::segment(1)=='thuoc' ) active @endif">

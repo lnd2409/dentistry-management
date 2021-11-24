@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\TestTypeController;
 use App\Http\Controllers\Admin\MedicalRecordsController;
+use App\Http\Controllers\Admin\MedicalAppointmentCard;
 
 
 use App\Http\Controllers\TestSendMailController;
@@ -139,16 +140,26 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
     });
 
     // Auth::routes();
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::view('/admin', 'admin/template.layout');
-
-    Route::prefix('/ho-so-benh')->name('medical.record.')->group(function () {
-        Route::get('/', [MedicalRecordsController::class, 'index'])->name('index');
-        Route::get('/them-moi', [MedicalRecordsController::class, 'create'])->name('add');
-        Route::post('/xu-ly-them-moi',[MedicalRecordsController::class, 'store'])->name('store');
+    Route::group(['middleware' => 'CheckRole:2'], function () {
+        Route::prefix('/ho-so-benh')->name('medical.record.')->group(function () {
+            Route::get('/', [MedicalRecordsController::class, 'index'])->name('index');
+            Route::get('/them-moi', [MedicalRecordsController::class, 'create'])->name('add');
+            Route::post('/xu-ly-them-moi',[MedicalRecordsController::class, 'store'])->name('store');
+        });
+        Route::prefix('/phieu-kham')->name('medical.appointment.')->group(function () {
+            Route::get('/danh-sach', [MedicalAppointmentCard::class, 'index'])->name('index');
+            Route::get('/{idRecord}/tao-moi', [MedicalAppointmentCard::class, 'create'])->name('create');
+            Route::get('/{id}/chi-tiet', [MedicalAppointmentCard::class, 'detail'])->name('detail');
+            Route::post('/{idPhieuKham}/them-thuoc',[MedicalAppointmentCard::class, 'addMedical'])->name('add.medical');
+        });
     });
 });
 
+//ajax
+Route::get('/thuoc/{idMedical}', [MedicalAppointmentCard::class, 'getMedicalAjax']);
+Route::get('/dich-vu/{idTypeservice}', [MedicalAppointmentCard::class, 'getService']);
 Route::get('getSchedule', [ScheduleController::class, 'getSchedule'])->name('getSchedule');
 
 

@@ -24,7 +24,7 @@ class AuthStaffController extends Controller
 
 
 
-   
+
 
      public function handleLogin(Request $request)
     {
@@ -34,7 +34,7 @@ class AuthStaffController extends Controller
         ];
         // dd($arrUser);
         if (Auth::guard('nhanvien')->attempt($arrUser)) {
-            
+
             return view('admin.template.layout');
             }
         else {
@@ -42,5 +42,5 @@ class AuthStaffController extends Controller
         }
     }
 
-   
+
 }

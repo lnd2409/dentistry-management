@@ -9,12 +9,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-primary" href="{{ route('medical.record.add') }}">
+            {{-- <a class="btn btn-primary" href="{{ route('medical.record.add') }}">
                 Thêm hồ sơ bệnh mới
             </a>
             <a class="btn btn-primary" href="{{ route('medical.record.add') }}">
                 Tạo phiếu khám
-            </a>
+            </a> --}}
         </div>
     </div>
     <br>
@@ -60,28 +60,27 @@
             <tr>
                 <th>Mã hồ sơ</th>
                 <th>Họ tên</th>
-                <th>Số điện thoại</th>
                 <th>Năm sinh</th>
-                <th>Địa chỉ</th>
+                <th>Ngày khám</th>
+                <th>Trạng thái</th>
                 <th>Tác vụ</th>
             </tr>
         </thead>
         <tbody>
-            @if ($hoSoBenh->count() > 0)
-                @foreach ($hoSoBenh as $item)
+            @if ($data->count() > 0)
+                @foreach ($data as $item)
                 <tr>
                     <td>{{ $item->hsb_maso }}</td>
                     <td>{{ $item->hsb_hotenkhachhang }}</td>
-                    <td>{{ $item->hsb_sdt }}</td>
                     <td>{{ $item->hsb_namsinh }}</td>
-                    <td>{{ $item->hsb_diachi }}</td>
+                    <td>{{ $item->pk_ngaykham->format('d-m-Y') }}</td>
+                    <td>{{ $item->pk_trangthai }}</td>
                     <td>
                         {{-- <form action="{{route('loaidichvu.destroy',$item)}}" method="post"> --}}
                             {{-- @csrf --}}
-                            <a href="{{ route('medical.appointment.create', ['idRecord'=>$item->hsb_ma]) }}" class="btn btn-success">Khám bệnh</a>
-                            <a href="#" class="btn btn-default">Chi tiết</a>
-                            <a href="{{route('loaidichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
-                            <button type="submit" class="btn btn-danger">xóa</button>
+                            <a href="{{ route('medical.appointment.detail', ['id'=>$item->pk_ma]) }}" class="btn btn-default">Chi tiết</a>
+                            {{-- <a href="{{route('loaidichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
+                            <button type="submit" class="btn btn-danger">xóa</button> --}}
                         {{-- </form> --}}
                     </td>
                 </tr>

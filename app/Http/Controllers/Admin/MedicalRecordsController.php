@@ -27,7 +27,6 @@ class MedicalRecordsController extends Controller
             $hoSoBenh->where('hsb_namsinh',$request->namSinh);
         }
         $hoSoBenh = $hoSoBenh->get();
-        // dd($hoSoBenh);
         return view('admin.medical_records.index', compact('hoSoBenh'));
     }
 
@@ -45,6 +44,6 @@ class MedicalRecordsController extends Controller
             'hsb_ngaylap' => Carbon::now()
         ]);
         $thuoc=HoSoBenh::create($request->all());
-        return redirect()->route('medical.record.index');;
+        return redirect()->route('medical.record.index');
     }
 }

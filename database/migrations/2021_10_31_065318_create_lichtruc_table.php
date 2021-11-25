@@ -19,11 +19,12 @@ class CreateLichtrucTable extends Migration
             $table->bigInteger('ca_ma')->unsigned();
             $table->foreign('ca_ma')->references('ca_ma')->on('ca')->onDelete('CASCADE');
 
-            $table->bigInteger('p_ma')->unsigned();
-            $table->foreign('p_ma')->references('p_ma')->on('phong')->onDelete('CASCADE');
 
             $table->bigInteger('nv_ma')->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');
+
+            $table->bigInteger('ngay_ma')->unsigned();
+            $table->foreign('ngay_ma')->references('ngay_ma')->on('ngay')->onDelete('CASCADE');
 
             $table->timestamps();
         });

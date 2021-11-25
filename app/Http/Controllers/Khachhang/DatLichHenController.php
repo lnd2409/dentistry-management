@@ -38,16 +38,16 @@ class DatLichHenController extends Controller
         $sdt = $request->sdt;
         $noidung = $request->noidung;
         $role = $request->typeAdmin;
-
-        
         $ip = $request->ip();
         $ngaydangky = date('Y-m-d H:i:s');
-      
-      $checkPhieuHen=Phieuhen::where('ph_ip',$ip)->where('ph_ngaydangky','>=',date("Y-m-d H:i:s", strtotime('-1 hours')))->first(); 
-        if($checkPhieuHen){
-            alert()->error('Đặt lịch hẹn thất bại',' Bạn đã đăng ký trước đó, nếu muốn đăng ký tiếp vui lòng chờ sau 60 phút');
 
-            return back();
+        if($role == NULL){//user
+            $checkPhieuHen=Phieuhen::where('ph_ip',$ip)->where('ph_ngaydangky','>=',date("Y-m-d H:i:s", strtotime('-1 hours')))->first(); 
+            if($checkPhieuHen){
+                alert()->error('Đặt lịch hẹn thất bại',' Bạn đã đăng ký trước đó, nếu muốn đăng ký tiếp vui lòng chờ sau 60 phút');
+
+                return back();
+            }
         }
         $lichHen=[
             'ph_hoten'=>$hoten,

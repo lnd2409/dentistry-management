@@ -40,7 +40,7 @@ use App\Http\Controllers\TestSendMailController;
 Route::get('/', [AuthCustomerController::class, 'index'])->name('customer.home');
 
 //Nhân viên
-Route::get('/nhan-vien-dang-nhap', [AuthStaffController::class, 'login'])->name('staff.login');
+Route::get('/admin', [AuthStaffController::class, 'login'])->name('staff.login');
 Route::post('/nhan-vien-dang-nhap', [AuthStaffController::class, 'handleLogin'])->name('staff.submit.login');
 
 
@@ -63,7 +63,9 @@ Route::get('/dang-xuat', [AuthCustomerController::class, 'logout'])->name('custo
 Route::middleware(['CheckAuthSatff'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/lich-hen', [DatLichHenController::class, 'getAllAppointment'])->name('admin.lichhen');
+        Route::get('/lich-hen-them', [DatLichHenController::class, 'addAppoitment'])->name('admin.themlichhen');
         Route::post('/cap-nhat-lich-hen', [DatLichHenController::class, 'updateAllAppointment'])->name('admin.capnhatlichhen');
+        Route::post('/tim-kiem-lich-hen', [DatLichHenController::class,'searchAllAppointment'])->name('admin.timkiemtlichhen');
         Route::get('/dang-xuat', [AuthStaffController::class, 'logout'])->name('staff.logout');
 
         /*

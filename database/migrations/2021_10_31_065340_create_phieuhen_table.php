@@ -23,6 +23,8 @@ class CreatePhieuhenTable extends Migration
             $table->time('ph_giohen');
             $table->text('ph_yeucau');
             $table->integer('ph_trangthai')->default(0);
+            $table->dateTime('ph_ngaydangky');
+            $table->string('ph_ip');
 
             $table->bigInteger('nv_ma')->nullable()->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');

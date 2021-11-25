@@ -10,6 +10,8 @@ use Session;
 use Auth;
 use Mail;
 use App\Models\KhachHang;
+use App\Models\Phieuhen;
+
 class DatLichHenController extends Controller
 {
     /**
@@ -35,9 +37,15 @@ class DatLichHenController extends Controller
         $ngayhen = $request->ngayhen;
         $sdt = $request->sdt;
         $noidung = $request->noidung;
+        $ip = $request->ip();
+        $ngaydangky = date('Y-m-d H:i:s');
       
-       
-        
+      $checkPhieuHen=Phieuhen::where('ph_ip',$ip)->where('ph_ngaydangky','>=',date("Y-m-d H:i:s", strtotime('-1 hours')))->first(); 
+        if($checkPhieuHen){
+            alert()->error('Đặt lịch hẹn thất bại',' Bạn đã đăng ký trước đó, nếu muốn đăng ký tiếp vui lòng chờ sau 60 phút');
+
+            return back();
+        }
         $lichHen=[
             'ph_hoten'=>$hoten,
             'ph_sdt'=>$sdt,
@@ -45,7 +53,9 @@ class DatLichHenController extends Controller
             'ph_giohen'=>date("H:i", strtotime($ngayhen)),
             'ph_yeucau'=>$noidung,
             'ph_trangthai'=>0, //Chưa có được duyệt bởi admin
-            'ph_email'=>$email
+            'ph_email'=>$email,
+            'ph_ngaydangky'=>$ngaydangky,
+            'ph_ip'=>$ip
         ];
         
         $result = DB::table('phieuhen')->insert($lichHen);

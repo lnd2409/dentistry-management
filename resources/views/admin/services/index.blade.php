@@ -32,9 +32,9 @@
             <tr>
                 <td>{{$item->dv_ten}}</td>
                 <td>{{$item->dv_mota}}</td>
-                <td>{{$item->dv_tgdukien}}</td>
-                <td>{{number_format($item->giadv->dongia)}}</td>
-                <td>{{$item->loaidv->ldv_ten}}</td>
+                <td>{{$item->dv_thoigiandukien}}</td>
+                <td>{{number_format($item->giadv->gdv_gia)}}</td>
+                <td>{{$item->loaidichvu->ldv_ten}}</td>
                 <td>
                     <form action="{{route('dichvu.destroy',$item)}}" method="post">
                         @csrf

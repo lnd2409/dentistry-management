@@ -17,8 +17,8 @@ class CreatePhieukhamTable extends Migration
             $table->id('pk_ma');
             $table->date('pk_ngaykham');
             $table->integer('pk_trangthai')->default(0);
-            $table->text('pk_ghichu');
-            $table->date('pk_ngaytaikham');
+            $table->text('pk_ghichu')->nullable();
+            $table->date('pk_ngaytaikham')->nullable();
 
             $table->bigInteger('nv_ma')->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');

@@ -8,6 +8,8 @@ use App\Models\HoSoBenh;
 use App\Models\PhieuKham;
 use App\Models\DichVu;
 use App\Models\Thuoc;
+use App\Models\Loaicanlamsan;
+use App\Models\Canlamsan;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -16,7 +18,6 @@ class MedicalAppointmentCard extends Controller
 
     public function index(Request $request) {
         $data = PhieuKham::join('hosobenh','hosobenh.hsb_ma','phieukham.hsb_ma')->get();
-        // dd($data);
         return view('admin.medical_appointment.index', compact('data'));
     }
 
@@ -31,7 +32,7 @@ class MedicalAppointmentCard extends Controller
             ]
         );
         $appointmentCardDetail = PhieuKham::find($createAppointmentCard->pk_ma);
-        return view('admin.medical_appointment.create', compact('info','appointmentCardDetail'));
+        return redirect()->route('medical.appointment.detail', ['id' => $createAppointmentCard->pk_ma]);
     }
 
     public function detail($id) {
@@ -47,8 +48,25 @@ class MedicalAppointmentCard extends Controller
         //Dịch vụ
         $serviceType = DB::table('loaidichvu')->get();
 
+        //Cận lâm sàn
+        $testType = Loaicanlamsan::all();
+
+        //Lịch sử khám
+        $history = PhieuKham::join('nhanvien','nhanvien.nv_ma','phieukham.nv_ma')->orderBy('phieukham.created_at','DESC')->get();
+
+        //Phiếu xét nghiệm
+        $appointmentTest = DB::table('phieuxetnghiem')->join('canlamsan','canlamsan.cls_ma','phieuxetnghiem.cls_ma')->where('phieuxetnghiem.pk_ma',$id)->get();
+
         return view('admin.medical_appointment.detail',
-        compact('detail','info','medical','medicalAll','medicalSelect','serviceType'));
+        compact('appointmentTest','detail','info','medical','testType','medicalAll','medicalSelect','serviceType','history'));
+    }
+
+    public function updateNote($idRecord, Request $request) {
+        $update = PhieuKham::find($idRecord)->update([
+            'pk_ghichu' => $request->pk_ghichu,
+            'pk_ngaytaikham' => $request->pk_ngaytaikham
+        ]);
+        return redirect()->back();
     }
 
     public function getMedicalAjax($idMedical) {
@@ -85,8 +103,24 @@ class MedicalAppointmentCard extends Controller
         return redirect()->back();
     }
 
+    public function handleMedicalAppointment($idPhieuKham, Request $request) {
+        DB::table('phieuxetnghiem')->insert(
+            [
+                'pxn_ngaylap' => Carbon::now(),
+                'pk_ma' => $idPhieuKham,
+                'cls_ma' => $request->cls_ma
+            ]
+        );
+        return redirect()->back();
+    }
+
     public function getService($idTypeservice) {
         $service = DichVu::where('ldv_ma', $idTypeservice)->get();
         return response()->json($service, 200);
+    }
+
+    public function getTestByType($idType) {
+        $test = Canlamsan::where('lcls_ma', $idType)->get();
+        return response()->json($test, 200);
     }
 }

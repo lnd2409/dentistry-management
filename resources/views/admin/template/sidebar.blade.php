@@ -55,6 +55,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('test.process.index') }}"
+                                class="nav-link @if(Request::segment(1)=='quy-trinh-can-lam-san' ) active @endif">
+                                <i class="fas fa-th-list"></i>
+                                <p>
+                                    Quy trình cận lâm sàn
+                                </p>
+                            </a>
+                        </li>
                          <li class="nav-item">
                             <a href="{{ route('medical.record.index') }}"
                                 class="nav-link @if(Request::segment(1)=='ho-so-benh' ) active @endif">

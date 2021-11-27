@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\TestTypeController;
 use App\Http\Controllers\Admin\MedicalRecordsController;
 use App\Http\Controllers\Admin\MedicalAppointmentCard;
-
+use App\Http\Controllers\TestProcessController;
 
 use App\Http\Controllers\TestSendMailController;
 
@@ -155,6 +155,14 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
             Route::get('/{idRecord}/tao-moi', [MedicalAppointmentCard::class, 'create'])->name('create');
             Route::get('/{id}/chi-tiet', [MedicalAppointmentCard::class, 'detail'])->name('detail');
             Route::post('/{idPhieuKham}/them-thuoc',[MedicalAppointmentCard::class, 'addMedical'])->name('add.medical');
+            Route::post('/cap-nhat-phieu-kham/{idRecord}', [MedicalAppointmentCard::class, 'updateNote'])->name('update');
+            Route::post('/chi-dinh-xet-nghiem/{idPhieuKham}', [MedicalAppointmentCard::class, 'handleMedicalAppointment'])->name('handle.test');
+
+        });
+        Route::prefix('/quy-trinh-can-lam-san')->name('test.process.')->group(function () {
+            Route::get('/danh-sach', [TestProcessController::class, 'index'])->name('index');
+            Route::get('/chi-tiet/{id}', [TestProcessController::class, 'show'])->name('show');
+            Route::post('/cap-nhat/{id}', [TestProcessController::class, 'update'])->name('update');
         });
     });
 });
@@ -163,8 +171,8 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
 Route::get('/thuoc/{idMedical}', [MedicalAppointmentCard::class, 'getMedicalAjax']);
 Route::get('/dich-vu/{idTypeservice}', [MedicalAppointmentCard::class, 'getService']);
 Route::get('getSchedule', [ScheduleController::class, 'getSchedule'])->name('getSchedule');
-
-
+Route::get('{idType}/can-lam-san/', [MedicalAppointmentCard::class, 'getTestByType']);
+Route::get('/chi-tiet-xet-nghiem/{id}', [TestProcessController::class, 'showAjax'])->name('showAjax');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -17,6 +17,7 @@ class CreateChitietthuocTable extends Migration
             $table->id('ctt_ma');
             $table->integer('ctt_soluong');
             $table->integer('ctt_gia');
+            $table->string('ctt_cachdung');
 
             $table->bigInteger('pk_ma')->unsigned();
             $table->foreign('pk_ma')->references('pk_ma')->on('phieukham')->onDelete('CASCADE');

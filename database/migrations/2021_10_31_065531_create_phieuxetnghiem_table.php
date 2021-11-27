@@ -16,9 +16,10 @@ class CreatePhieuxetnghiemTable extends Migration
         Schema::create('phieuxetnghiem', function (Blueprint $table) {
             $table->id('pxn_ma');
             $table->date('pxn_ngaylap');
-            $table->text('pxn_ghichu');
-            $table->text('pxn_ketqua');
-
+            $table->text('pxn_ghichu')->nullable();
+            $table->text('pxn_ketqua')->nullable();
+            $table->integer('pxn_trangthai')->default(1);
+            $table->string('pxn_hinhanh')->nullable();
             $table->bigInteger('pk_ma')->unsigned();
             $table->foreign('pk_ma')->references('pk_ma')->on('phieukham')->onDelete('CASCADE');
 

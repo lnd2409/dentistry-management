@@ -5,7 +5,7 @@
 </head>
 <body>
     @include('aesthetic.header')
-
+    @yield('content')
     @include('aesthetic.footer')
     @include('aesthetic.script')
 </body>

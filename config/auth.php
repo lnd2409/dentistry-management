@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // 'khachhang'=>[
+        //     'driver'=> 'session',
+        //     'provider'=>'khachhang'
+        // ],
+        //     'khachhang-api'=>[
+        //     'driver'=>'token',
+        //     'provider'=>'khachhang'
+        // ],
+        'nhanvien'=>[
+            'driver'=> 'session',
+            'provider'=>'nhanvien'
+        ],
+            'nhanvien-api'=>[
+            'driver'=>'token',
+            'provider'=>'nhanvien'
+        ],
     ],
 
     /*
@@ -63,6 +79,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        // 'khachhang' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\KhachHang::class,
+        // ],
+        'nhanvien' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\NhanVien::class,
         ],
 
         // 'users' => [

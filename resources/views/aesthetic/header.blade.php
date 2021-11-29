@@ -30,9 +30,13 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <ul class="header__top__left">
-                            <li><i class="fa fa-phone"></i> 1-677-124-44227</li>
-                            <li><i class="fa fa-map-marker"></i> Los Angeles Gournadi, 1230 Bariasl</li>
-                            <li><i class="fa fa-clock-o"></i> Mon to Sat 9:00am to 18:00pm</li>
+                            {{-- <li><i class="fa fa-user"></i>@if (Auth::guard('khachhang')->check())
+                                {{Auth::guard('khachhang')->user()->hsb_hoten}}
+                                @else
+                                Guest
+                            @endif</li> --}}
+                            <li><i class="fa fa-map-marker"></i>Khu II, đường 3/2, P. Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ.</li>
+                            <li><i class="fa fa-clock-o"></i> <span  id="digital-clock"></span> </li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
@@ -57,22 +61,26 @@
                     <div class="header__menu__option">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./about.html">About</a></li>
-                                <li><a href="./services.html">Services</a></li>
-                                <li><a href="#">Pages</a>
+                                <li class="active"><a href="{{ route('customer.home') }}">Trang chủ</a></li>
+                                {{-- <li><a href="./about.html"></a></li> --}}
+                                <li><a href="./services.html">Dịch vụ</a></li>
+                                {{-- <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="./pricing.html">Pricing</a></li>
                                         <li><a href="./doctor.html">Doctor</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                                 <li><a href="./blog.html">News</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="{{ route('customer.xemlichhen') }}">Lịch hẹn</a></li>
                             </ul>
                         </nav>
                         <div class="header__btn">
-                            <a href="#" class="primary-btn">Appointment</a>
+                             {{-- @if (Auth::guard('khachhang')->check()) --}}
+                               {{-- <a href="{{ route('customer.logout') }}" class="primary-btn">Đăng xuất</a> --}}
+                             {{-- @else --}}
+                                {{-- <a href="{{ route('customer.login') }}" class="primary-btn">Đăng nhập/ Đăng kí</a> --}}
+                             {{-- @endif --}}
                         </div>
                     </div>
                 </div>

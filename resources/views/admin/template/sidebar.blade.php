@@ -37,6 +37,7 @@
                                  </p>
                             </a>
                         </li>
+                        @if(Auth::guard('nhanvien')->user()->cv_ma==1)
                          <li class="nav-item">
                              <a href="{{ route('admin.lichhen') }}"
                                  class="nav-link @if(Request::segment(1)=='lich-hen' ) active @endif">
@@ -46,6 +47,8 @@
                                  </p>
                             </a>
                          </li>
+                         @endif
+                         @if(Auth::guard('nhanvien')->user()->cv_ma==2)
                          <li class="nav-item">
                             <a href="{{ route('medical.appointment.index') }}"
                                 class="nav-link @if(Request::segment(1)=='phieu-kham' ) active @endif">
@@ -73,6 +76,8 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
+                        @if(Auth::guard('nhanvien')->user()->cv_ma==3)
                          <li class="nav-item">
                              <a href="{{route('thuoc.index')}}"
                                  class="nav-link @if(Request::segment(2)=='thuoc' ) active @endif">
@@ -82,6 +87,9 @@
                                  </p>
                              </a>
                          </li>
+                         @endif
+                        @if(Auth::guard('nhanvien')->user()->cv_ma==5)
+
                          <li class="nav-item">
                              <a href="{{route('loaidichvu.index')}}"
                                  class="nav-link @if(Request::segment(2)=='loai-dich-vu' ) active @endif">
@@ -145,6 +153,7 @@
                                  </p>
                              </a>
                          </li>
+                         @endif
                          <li class="nav-item">
                              <a href="{{route('staff.logout')}}"
                                  class="nav-link @if(Request::segment(2)=='admin/dang-xuat' ) active @endif">

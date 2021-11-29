@@ -62,12 +62,14 @@ Route::get('/dang-xuat', [AuthCustomerController::class, 'logout'])->name('custo
 //Trang quản trị khi đã login
 Route::middleware(['CheckAuthSatff'])->group(function () {
     Route::prefix('/admin')->group(function () {
+
+       Route::group(['middleware' => 'CheckRole:1'], function () {//y tá
         Route::get('/lich-hen', [DatLichHenController::class, 'getAllAppointment'])->name('admin.lichhen');
         Route::get('/lich-hen-them', [DatLichHenController::class, 'addAppoitment'])->name('admin.themlichhen');
         Route::post('/cap-nhat-lich-hen', [DatLichHenController::class, 'updateAllAppointment'])->name('admin.capnhatlichhen');
         Route::post('/tim-kiem-lich-hen', [DatLichHenController::class,'searchAllAppointment'])->name('admin.timkiemtlichhen');
         Route::get('/dang-xuat', [AuthStaffController::class, 'logout'])->name('staff.logout');
-
+       });
         /*
         * Thuocs Routes
         */

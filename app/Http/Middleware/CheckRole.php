@@ -17,9 +17,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next,$role)
     {
-        // if (Auth::guard('nhanvien')->check() && Auth::guard('nhanvien')->user()->cv_ma==$role) {
+        if (Auth::guard('nhanvien')->check() && Auth::guard('nhanvien')->user()->cv_ma==$role) {
             return $next($request);
-        // }
+        }
 
         return back();
     }

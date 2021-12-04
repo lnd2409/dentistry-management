@@ -13,7 +13,6 @@
 <!-- ChartJS -->
 <script src="{{asset('template/admin/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="{{asset('template/admin/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
 <script src="{{asset('template/admin/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{asset('template/admin/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>

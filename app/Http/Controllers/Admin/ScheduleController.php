@@ -111,14 +111,21 @@ class ScheduleController extends Controller
         $lichtruc=Lichtruc::orderBy('ca_ma', 'ASC')->get();
         $schedule=[];
         foreach ($lichtruc as $key => $value) {
+            $start=$value->ngay->ngay->format('Y-m-d');
+            $end=$value->ngay->ngay->format('Y-m-d');
+            if($value->ca->ca_ma!=3){
+                $start.='T'.$value->ca->ca_giobatdau;
+                $end.='T'.$value->ca->ca_gioketthuc;
+            }
             $x = (object) [
-                'title' => $value->ca->ca_giobatdau.' - '.$value->nhanvien->nv_ten,
-                'start' => $value->ngay->ngay->format('Y-m-d'),
+                'title' => $value->nhanvien->nv_ten,
+                'description' => $value->nhanvien->nv_ten,
+                'start' => $start,
+                'end' => $end,
                 'id'=>$value->lt_ma
             ];
             $schedule[$key]=$x;
         }
-
          return response()->json($schedule, 200);
     }
 }

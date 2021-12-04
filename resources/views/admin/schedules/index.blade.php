@@ -1,11 +1,15 @@
 @extends('admin.template.layout')
 @push('css')
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css"
     integrity="sha256-zsz1FbyNCtIE2gIB+IyWV7GbCLyKJDTBRz0qQaBSLxM=" crossorigin="anonymous">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
     integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+</script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         $.ajax({
@@ -15,19 +19,26 @@
                 console.log(response);
                 var calendarEl = document.getElementById('calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
+                    initialView: 'timeGridWeek',
                     locale: 'vi',
                     selectable: true,
-
                     dropAccept: '.cool-event',
                     dateClick: function (info) {
                         $('#btnModal').click();
                         $("#ngay_ma").val(info.dateStr);
-                        // alert('Clicked on: ' + info.dateStr);
-                        // change the day's background color just for fun
                         info.dayEl.style.backgroundColor = 'blue';
                     },
+                    eventDidMount: function(info) {
+                        $(info.el).tooltip({
+                            title: info.event.extendedProps.description,
+                            placement: "top",
+                            trigger: "hover",
+                            container: "body"
+                        });
+                    },
                     events: response,
+
+
                     eventClick: function (info) {
                         info.jsEvent.preventDefault(); // don't let the browser navigate
                         if (confirm("Bạn muốn xoá lịch trực này?")) {
@@ -138,4 +149,6 @@
     });
 
 </script>
+
+
 @endpush

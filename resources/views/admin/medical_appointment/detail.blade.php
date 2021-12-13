@@ -90,8 +90,36 @@
 
                                         </div>
                                     </li>
+                                    <li class="list-group-item">
+                                        @php
+                                            $tongTienCanLamSanEnd = 0;
+                                            $tongTienThuocEnd = 0;
+                                        @endphp
+                                        @foreach ($appointmentTest as $item)
+                                                @php
+                                                    $giaCanLamSan = DB::table('giadichvucanlamsan')->where('cls_ma', $item->cls_ma)->orderBy('ngay_ma','desc')
+                                                    ->first();
+                                                @endphp
+                                                @php
+                                                    $tongTienCanLamSanEnd = $tongTienCanLamSanEnd + ($giaCanLamSan->gdvcls_gia);
+                                                @endphp
+                                        @endforeach
+                                        @foreach ($medical as $item)
+                                            @php
+                                                $giaThuoc = DB::table('giathuoc')->where('thuoc_ma', $item->thuoc_ma)
+                                                                                ->orderBy('gt_ngay','desc')->first();
+                                                $tongTienThuocEnd = $tongTienThuocEnd + ($giaThuoc->gt_gia * $item->ctt_soluong);
+                                            @endphp
+                                        @endforeach
+
+                                    </li>
                                     <input class="form-control btn btn-primary" type="submit" value="Cập nhật" name="">
                                 </ul>
+                            </form>
+                            <form action="{{ route('receipt.create', ['idMedicalRecord'=>$detail->pk_ma]) }}" method="get">
+                                <input type="text" hidden value="{{ $tongTienThuocEnd + $tongTienCanLamSanEnd }}" name="tongTien">
+                                <b>TỔNG TIỀN: </b><span>{{ number_format($tongTienThuocEnd + $tongTienCanLamSanEnd) }} VND</span>
+                                <button type="submit" class="btn btn-success col-md-12">Thanh toán</button>
                             </form>
                         </div>
                         <!-- /.card-body -->
@@ -186,21 +214,7 @@
                                                         </tr>
                                                     </thead>
                                                         <tbody class="serviceAppend">
-                                                            {{-- @foreach ($medical as $item)
-                                                            <tr>
-                                                                <td></td>
-                                                                <td>
-                                                                    <input value="{{ $item->thuoc_ma }}" hidden name="thuoc[]" />
-                                                                    <input value="{{ $item->thuoc_ten }}" class="form-control" readonly />
-                                                                </td>
-                                                                <td>
-                                                                    <input class="form-control" value="{{ $item->ctt_soluong }}" type="number" name="soLuong[]" />
-                                                                </td>
-                                                                <td>
-                                                                    <input class="form-control" value="{{ $item->ctt_cachdung }}" name="cachDung[]" />
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach --}}
+
                                                         </tbody>
                                                         <tbody>
                                                             <tr>
@@ -254,15 +268,26 @@
                                             <tr>
                                                 <th>Tên</th>
                                                 <th>Ngày thực hiện</th>
+                                                <th>Giá tiền</th>
                                                 <th>Trạng thái</th>
                                                 <th>Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $tongTienCanLamSan = 0;
+                                            @endphp
                                             @foreach ($appointmentTest as $item)
                                                 <tr>
                                                     <td>{{ $item->cls_ten }}</td>
                                                     <td>{{ $item->pxn_ngaylap }}</td>
+                                                    <td>
+                                                        @php
+                                                            $giaCanLamSan = DB::table('giadichvucanlamsan')->where('cls_ma', $item->cls_ma)->orderBy('ngay_ma','desc')
+                                                            ->first();
+                                                            print_r(number_format($giaCanLamSan->gdvcls_gia));
+                                                        @endphp
+                                                    </td>
                                                     <td>
                                                         @if ($item->pxn_trangthai == 1)
                                                             <span class="btn btn-sm btn-warning">Đang thực hiện</span>
@@ -277,6 +302,9 @@
                                                         <a href="#" class="btn btn-danger">X</a>
                                                     </td>
                                                 </tr>
+                                                @php
+                                                    $tongTienCanLamSan = $tongTienCanLamSan + ($giaCanLamSan->gdvcls_gia);
+                                                @endphp
                                             @endforeach
                                             <div id="detail-test" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -290,16 +318,16 @@
                                                         <div class="modal-body content-result">
 
                                                         </div>
-                                                        <div class="modal-footer">
+                                                        {{-- <div class="modal-footer">
                                                             Footer
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>#</th>
+                                                <th><b>Tổng tiền:</b> <span>{{ number_format($tongTienCanLamSan) }}VND</span></th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -331,10 +359,15 @@
                                                             <th style="width: 10px">#</th>
                                                             <th>Tên thuốc</th>
                                                             <th>Số lượng</th>
+                                                            <th>Liều dùng</th>
                                                             <th>Cách dùng</th>
+                                                            <th>Đơn giá</th>
                                                             </tr>
                                                         </thead>
                                                             <tbody class="medical">
+                                                                @php
+                                                                    $tongTienThuoc = 0;
+                                                                @endphp
                                                                 @foreach ($medical as $item)
                                                                 <tr>
                                                                     <td></td>
@@ -346,14 +379,35 @@
                                                                         <input class="form-control" value="{{ $item->ctt_soluong }}" type="number" name="soLuong[]" />
                                                                     </td>
                                                                     <td>
+                                                                        <input class="form-control" value="{{ $item->ctt_lieudung }}" name="lieuDung[]" />
+                                                                    </td>
+                                                                    <td>
                                                                         <input class="form-control" value="{{ $item->ctt_cachdung }}" name="cachDung[]" />
                                                                     </td>
+                                                                    <td>
+                                                                        @php
+                                                                            $giaThuoc = DB::table('giathuoc')->where('thuoc_ma', $item->thuoc_ma)
+                                                                            ->orderBy('gt_ngay','desc')->first();
+                                                                        @endphp
+                                                                        {{-- {{ $giaThuoc->gt_gia }} --}}
+                                                                        <input type="text" name="" readonly value="{{ number_format($giaThuoc->gt_gia) }} VND" id="">
+                                                                    </td>
+                                                                    @php
+                                                                        $tongTienThuoc = $tongTienThuoc + ($giaThuoc->gt_gia * $item->ctt_soluong);
+                                                                    @endphp
                                                                 </tr>
                                                                 @endforeach
                                                             </tbody>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td colspan="4" class="text-center">
+                                                                    <td colspan="6">
+                                                                        <b>Tổng tiền:</b> {{ number_format($tongTienThuoc) }} VND
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="6" class="text-center">
                                                                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                                                                     </td>
                                                                 </tr>
@@ -412,6 +466,9 @@
                         content += '</td>';
                         content += '<td>';
                         content += '<input class="form-control" type="number" name="soLuong[]" />';
+                        content += '</td>';
+                        content += '<td>';
+                        content += '<input class="form-control" name="lieuDung[]" />';
                         content += '</td>';
                         content += '<td>' + '<input class="form-control" name="cachDung[]" />'+'</td>';
                         content += '</tr>';
@@ -475,7 +532,7 @@
                 var content = '<tr>';
                 content += '<td>1.</td>';
                 content += '<td>';
-                content += '<input value="'+ idService +'" hidden name="thuoc[]" />';
+                content += '<input value="'+ idService +'" hidden name="dichVu[]" />';
                 content += '<input value="'+ nameService.replace(/^\s+|\s+$/gm,'') +'" class="form-control" readonly />';
                 content += '</td>';
                 content += '<td>';

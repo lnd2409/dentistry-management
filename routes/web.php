@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\TestTypeController;
 use App\Http\Controllers\Admin\MedicalRecordsController;
 use App\Http\Controllers\Admin\MedicalAppointmentCard;
 use App\Http\Controllers\TestProcessController;
-
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\TestSendMailController;
 
 /*
@@ -164,6 +164,12 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
             Route::get('/danh-sach', [TestProcessController::class, 'index'])->name('index');
             Route::get('/chi-tiet/{id}', [TestProcessController::class, 'show'])->name('show');
             Route::post('/cap-nhat/{id}', [TestProcessController::class, 'update'])->name('update');
+        });
+
+
+        Route::prefix('/phieu-thu')->name('receipt.')->group(function () {
+            Route::get('/danh-sach', [ReceiptController::class, 'index'])->name('index');
+            Route::get('/tao-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createReceipt'])->name('create');
         });
     });
 });

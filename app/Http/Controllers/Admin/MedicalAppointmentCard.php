@@ -79,6 +79,7 @@ class MedicalAppointmentCard extends Controller
         $thuoc = $request->get('thuoc');
         $cachDung = $request->get('cachDung');
         $soLuong = $request->get('soLuong');
+        $lieuDung = $request->get('lieuDung');
         // dd($request->get('thuoc'));
         foreach ($thuoc as $key => $value) {
             # code...
@@ -87,12 +88,14 @@ class MedicalAppointmentCard extends Controller
                 $update = DB::table('chitietthuoc')->where('pk_ma', $idPhieuKham)->where('thuoc_ma', $value)->update(
                             [
                                 'ctt_soluong' => $soLuong[$key],
+                                'ctt_lieudung' => $lieuDung[$key],
                                 'ctt_cachdung' => $cachDung[$key],
                             ]
                         );
             }else {
                 $insert = DB::table('chitietthuoc')->insert(
                     [   'thuoc_ma' => $value,
+                        'ctt_lieudung' => $lieuDung[$key],
                         'ctt_soluong' => $soLuong[$key],
                         'ctt_cachdung' => $cachDung[$key],
                         'pk_ma' => $idPhieuKham

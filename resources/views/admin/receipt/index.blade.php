@@ -40,13 +40,19 @@
                 <tr>
                     <td>{{ $item->pt_ma }}</td>
                     <td>{{ $item->pt_ngaylap }}</td>
-                    <td>{{ $item->pt_tongtien }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ number_format($item->pt_tongtien) }}</td>
+                    <td>{{ $item->hsb_hotenkhachhang }}</td>
+                    <td>
+                        @if ($item->pt_trangthai == 0)
+                            <a href="{{ route('receipt.change.status', ['id'=>$item->pt_ma]) }}" class="btn btn-warning">Chưa thanh toán</a>
+                        @else
+                            <p class="btn btn-success">Đã thanh toán</p>
+                        @endif
+                    </td>
                     <td>
                         {{-- <form action="{{route('loaidichvu.destroy',$item)}}" method="post"> --}}
                             {{-- @csrf --}}
-                            <a href="" class="btn btn-default">Chi tiết</a>
+                            <a href="{{ route('receipt.create.pdf', ['idMedicalRecord'=>$item->pk_ma]) }}" class="btn btn-default">Xuất phiếu thu</a>
                             {{-- <a href="{{route('loaidichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
                             <button type="submit" class="btn btn-danger">xóa</button> --}}
                         {{-- </form> --}}

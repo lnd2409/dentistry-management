@@ -170,6 +170,8 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
         Route::prefix('/phieu-thu')->name('receipt.')->group(function () {
             Route::get('/danh-sach', [ReceiptController::class, 'index'])->name('index');
             Route::get('/tao-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createReceipt'])->name('create');
+            Route::get('/xuat-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createPDF'])->name('create.pdf');
+            Route::get('/thanh-toan/{id}', [ReceiptController::class, 'changeStatus'])->name('change.status');
         });
     });
 });

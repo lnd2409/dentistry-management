@@ -25,7 +25,7 @@ class ReceiptController extends Controller
         );
 
         $changeStatus = DB::table('phieukham')->where('pk_ma', $idMedicalRecord)->update([
-            ''
+            'pk_trangthai' => 0
         ]);
 
         return redirect()->route('receipt.index');

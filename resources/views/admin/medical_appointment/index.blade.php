@@ -74,7 +74,13 @@
                     <td>{{ $item->hsb_hotenkhachhang }}</td>
                     <td>{{ $item->hsb_namsinh }}</td>
                     <td>{{ $item->pk_ngaykham->format('d-m-Y') }}</td>
-                    <td>{{ $item->pk_trangthai }}</td>
+                    <td>
+                        @if ($item->pk_trangthai == 1)
+                            <p class="btn btn-warning">Đang thực hiện</p>
+                        @else
+                            <p class="btn btn-success">Hoàn thành</p>
+                        @endif
+                    </td>
                     <td>
                         {{-- <form action="{{route('loaidichvu.destroy',$item)}}" method="post"> --}}
                             {{-- @csrf --}}

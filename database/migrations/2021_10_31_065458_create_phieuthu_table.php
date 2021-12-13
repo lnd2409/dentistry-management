@@ -16,8 +16,8 @@ class CreatePhieuthuTable extends Migration
         Schema::create('phieuthu', function (Blueprint $table) {
             $table->id('pt_ma');
             $table->date('pt_ngaylap');
-            $table->float('pt_tongtien');
-
+            $table->integer('pt_tongtien');
+            $table->integer('pt_trangthai')->default(0);
             $table->bigInteger('nv_ma')->unsigned();
             $table->foreign('nv_ma')->references('nv_ma')->on('nhanvien')->onDelete('CASCADE');
 

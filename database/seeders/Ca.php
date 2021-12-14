@@ -16,16 +16,16 @@ class Ca extends Seeder
     {
            $ca = [
             [
-            'ca_giobatdau'=>'7:00',
-            'ca_gioketthuc'=>'11:00',
+            'ca_giobatdau'=>'07:30',
+            'ca_gioketthuc'=>'12:00',
             ],
             [
             'ca_giobatdau'=>'13:00',
-            'ca_gioketthuc'=>'17:00',
+            'ca_gioketthuc'=>'17:30',
             ],
             [
-            'ca_giobatdau'=>'16:00',
-            'ca_gioketthuc'=>'20:00',
+            'ca_giobatdau'=>'07:30',
+            'ca_gioketthuc'=>'17:30',
             ],
 
        ];

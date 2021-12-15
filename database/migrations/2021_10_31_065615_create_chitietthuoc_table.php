@@ -16,7 +16,7 @@ class CreateChitietthuocTable extends Migration
         Schema::create('chitietthuoc', function (Blueprint $table) {
             $table->id('ctt_ma');
             $table->integer('ctt_soluong');
-            $table->integer('ctt_gia');
+            $table->integer('ctt_gia')->nullable();
             $table->string('ctt_cachdung');
             $table->string('ctt_lieudung');
             $table->bigInteger('pk_ma')->unsigned();

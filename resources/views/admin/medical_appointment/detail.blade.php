@@ -117,8 +117,16 @@
                                 </ul>
                             </form>
                             <form action="{{ route('receipt.create', ['idMedicalRecord'=>$detail->pk_ma]) }}" method="get">
-                                <input type="text" hidden value="{{ $tongTienThuocEnd + $tongTienCanLamSanEnd }}" name="tongTien">
-                                <b>TỔNG TIỀN: </b><span>{{ number_format($tongTienThuocEnd + $tongTienCanLamSanEnd) }} VND</span>
+                                @php
+                                    $tongTienDichVuEnd = 0;
+                                @endphp
+                                @foreach ($service as $item)
+                                @php
+                                    $tongTienDichVuEnd = $tongTienDichVuEnd + $item->ctpkdv_gia;
+                                @endphp
+                                @endforeach
+                                <input type="text" hidden value="{{ $tongTienThuocEnd + $tongTienCanLamSanEnd + $tongTienDichVuEnd}}" name="tongTien">
+                                <b>TỔNG TIỀN: </b><span>{{ number_format($tongTienThuocEnd + $tongTienCanLamSanEnd + $tongTienDichVuEnd) }} VND</span>
                                 <button type="submit" class="btn btn-success col-md-12">Thanh toán</button>
                             </form>
                         </div>
@@ -182,51 +190,76 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane active" id="activity">
-                                    <form method="get" action="">
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="serviceType">Loại dịch vụ</label>
-                                                <select id="serviceType" class="form-control" name="">
-                                                    <option value="">Chọn loại dịch vụ</option>
-                                                    @foreach ($serviceType as $item)
-                                                        <option value="{{ $item->ldv_ma }}">{{ $item->ldv_ten }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="serviceType">Dịch vụ</label>
-                                                <select id="service" class="form-control service" name="service">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="serviceType">Loại dịch vụ</label>
+                                            <select id="serviceType" class="form-control" name="">
+                                                <option value="">Chọn loại dịch vụ</option>
+                                                @foreach ($serviceType as $item)
+                                                    <option value="{{ $item->ldv_ma }}">{{ $item->ldv_ten }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="serviceType">Dịch vụ</label>
+                                            <select id="service" class="form-control service" name="service">
 
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <a href="#" id="addService" class="btn btn-success">Thêm</a>
-                                            </div>
-                                            <form action="{{ route('medical.appointment.add.medical', ['idPhieuKham'=>$detail->pk_ma]) }}" method="POST">
-                                                @csrf
-                                                <table class="table table-bordered">
-                                                    <thead >
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a href="#" id="addService" class="btn btn-success">Thêm</a>
+                                        </div>
+                                        @php
+                                            $tongTienDichVu = 0;
+                                        @endphp
+                                        <form action="{{ route('medical.appointment.add.service', ['idPhieuKham'=>$detail->pk_ma]) }}" method="POST">
+                                            @csrf
+                                            <table class="table table-bordered">
+                                                <thead >
+                                                    <tr>
+                                                    <th style="width: 10px">#</th>
+                                                    <th>Tên dịch vụ</th>
+                                                    <th>Giá tiền</th>
+                                                    <th>Thao tác</th>
+                                                    </tr>
+                                                </thead>
+                                                    <tbody class="serviceAppend">
+                                                        @foreach ($service as $item)
+                                                        @php
+                                                            $tongTienDichVu = $tongTienDichVu + $item->ctpkdv_gia;
+                                                        @endphp
                                                         <tr>
-                                                        <th style="width: 10px">#</th>
-                                                        <th>Tên dịch vụ</th>
-                                                        <th>Giá tiền</th>
-                                                        <th>Thao tác</th>
-                                                        </tr>
-                                                    </thead>
-                                                        <tbody class="serviceAppend">
-
-                                                        </tbody>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="3" class="text-center">
-                                                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                                            <td></td>
+                                                            <td>
+                                                            <input value="" hidden name="dichVu[]" />
+                                                            <input value="{{ $item->dv_ten }}" class="form-control" readonly />
+                                                            </td>
+                                                            <td>
+                                                            <input value="{{ $item->ctpkdv_gia }}" class="form-control" readonly />
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="btn btn-sm btn-danger removeService">Xóa</a>
                                                                 </td>
                                                             </tr>
-                                                        </tbody>
-                                                </table>
-                                            </form>
-                                        </div>
-                                    </form>
+                                                        @endforeach
+                                                    </tbody>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="3" class="text-center">
+                                                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="3" class="text-center">
+                                                                <b>Tổng tiền: </b><span>{{ number_format($tongTienDichVu) }} VND</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="timeline">
@@ -439,6 +472,9 @@
     $(document).ready(function () {
         var base_url = window.location.origin;
         const arrMedical = [];
+        const arrService = [];
+        const medicalAppointment = {{ $detail->pk_ma }};
+        // console.log(medicalAppointment);
         $('#addMedical').click(function (e) {
             e.preventDefault();
             var medicalSelected = $('.medicalSelect').val();
@@ -503,11 +539,12 @@
         $('select#serviceType').change(function (e) {
             e.preventDefault();
             $('.itemService').remove();
+
             var idServiceType = $(this).children("option:selected").val();
-            console.log(idServiceType);
+            // console.log(idServiceType);
             $.ajax({
                 type: "GET",
-                url: base_url+"/dich-vu/"+idServiceType,
+                url: base_url+"/dich-vu/"+idServiceType+"/"+medicalAppointment,
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
@@ -529,33 +566,46 @@
             if(idService == null) {
                 alert("Không được để trống dịch vụ");
             }else {
-                var url = base_url+"chi-tiet-dich-vu/"+idService;
-                console.log(url);
-                var content = '';
-                $.ajax({
-                    type: "GET",
-                    url: base_url+"/chi-tiet-dich-vu/"+idService,
-                    // data: "data",
-                    dataType: "json",
-                    success: function (response) {
-                        console.log(response);
-                        content += '<tr>';
-                        content += '<td></td>';
-                        content += '<td>';
-                        content += '<input value="'+ idService +'" hidden name="dichVu[]" />';
-                        content += '<input value="'+ response.service.dv_ten +'" class="form-control" readonly />';
-                        content += '</td>';
-                        content += '<td>';
-                        content += '<input value="'+ response.price.gdv_gia +'" class="form-control" readonly />';
-                        content += '</td>';
-                        content += '<td>' + '<a href="#" class="btn btn-sm btn-danger">Xóa</a>'+'</td>';
-                        content += '</tr>';
-                    }
-                });
-
-                $('.serviceAppend').append(content);
+                if(arrService.includes(idService)) {
+                    alert("Đã thêm dịch vụ này !");
+                }else {
+                    arrService.push(idService);
+                    console.log(arrService);
+                    var content = '';
+                    $.ajax({
+                        type: "GET",
+                        url: base_url+"/chi-tiet-dich-vu/"+idService,
+                        // data: "data",
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response);
+                            content += '<tr class="itemServiceChose'+ idService +'">';
+                            content += '<td></td>';
+                            content += '<td>';
+                            content += '<input value="'+ idService +'" hidden name="dichVu[]" />';
+                            content += '<input value="'+ response.service.dv_ten +'" class="form-control" readonly />';
+                            content += '</td>';
+                            content += '<td>';
+                            content += '<input value="'+ response.price.gdv_gia +'" name="gia[]" class="form-control" readonly />';
+                            content += '</td>';
+                            // data-id-service="'+ idService +'"
+                            content += '<td>' + '<a href="#" data-id-service="'+ idService +'" class="btn btn-sm btn-danger removeService">Xóa</a>'+'</td>';
+                            content += '</tr>';
+                            $('.serviceAppend').append(content);
+                            $('.removeService').click(function (e) {
+                                e.preventDefault();
+                                var idSer = $('.removeService').data('id-service');
+                                $('.itemServiceChose'+idSer).remove();
+                                arrService.splice(arrService.indexOf(idSer),1);
+                                console.log(arrService);
+                            });
+                        }
+                    });
+                }
             }
         });
+
+
 
         $('.detail-test').click(function (e) {
             e.preventDefault();

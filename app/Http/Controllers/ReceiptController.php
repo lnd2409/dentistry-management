@@ -68,10 +68,17 @@ class ReceiptController extends Controller
 
         //Phiếu xét nghiệm
         $appointmentTest = DB::table('phieuxetnghiem')->join('canlamsan','canlamsan.cls_ma','phieuxetnghiem.cls_ma')->where('phieuxetnghiem.pk_ma',$idMedicalRecord)->get();
+
+         //Dịch vụ chi tiết
+         $service = DB::table('chitietphieukhamdichvu')->join('dichvu','dichvu.dv_ma','chitietphieukhamdichvu.dv_ma')
+         ->where('chitietphieukhamdichvu.pk_ma', $idMedicalRecord)->get();
+
+        //  dd($service);
         $data = [
             'info' => $info,
             'medical' => $medical,
             'appointmentTest' => $appointmentTest,
+            'service' => $service,
             'date' => date('m/d/Y')
         ];
 

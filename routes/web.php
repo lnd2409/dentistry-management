@@ -159,6 +159,7 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
             Route::post('/{idPhieuKham}/them-thuoc', [MedicalAppointmentCard::class, 'addMedical'])->name('add.medical');
             Route::post('/cap-nhat-phieu-kham/{idRecord}', [MedicalAppointmentCard::class, 'updateNote'])->name('update');
             Route::post('/chi-dinh-xet-nghiem/{idPhieuKham}', [MedicalAppointmentCard::class, 'handleMedicalAppointment'])->name('handle.test');
+            Route::post('/{idPhieuKham}/them-dich-vu', [MedicalAppointmentCard::class, 'addServices'])->name('add.service');
         });
         Route::prefix('/quy-trinh-can-lam-san')->name('test.process.')->group(function () {
             Route::get('/danh-sach', [TestProcessController::class, 'index'])->name('index');
@@ -178,7 +179,7 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
 
 //ajax
 Route::get('/thuoc/{idMedical}', [MedicalAppointmentCard::class, 'getMedicalAjax']);
-Route::get('/dich-vu/{idTypeservice}', [MedicalAppointmentCard::class, 'getService']);
+Route::get('/dich-vu/{idTypeservice}/{id}', [MedicalAppointmentCard::class, 'getService']);
 Route::get('getSchedule', [ScheduleController::class, 'getSchedule'])->name('getSchedule');
 Route::get('{idType}/can-lam-san/', [MedicalAppointmentCard::class, 'getTestByType']);
 Route::get('/chi-tiet-xet-nghiem/{id}', [TestProcessController::class, 'showAjax'])->name('showAjax');

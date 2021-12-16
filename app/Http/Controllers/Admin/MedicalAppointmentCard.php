@@ -106,6 +106,10 @@ class MedicalAppointmentCard extends Controller
         return redirect()->back();
     }
 
+    public function addServices(Request $request, $idPhieuKham) {
+
+    }
+
     public function handleMedicalAppointment($idPhieuKham, Request $request) {
         DB::table('phieuxetnghiem')->insert(
             [
@@ -120,6 +124,16 @@ class MedicalAppointmentCard extends Controller
     public function getService($idTypeservice) {
         $service = DichVu::where('ldv_ma', $idTypeservice)->get();
         return response()->json($service, 200);
+    }
+
+    public function getServiceDetail($idService) {
+        $service = DichVu::find($idService);
+        $priceService = DB::table('giadichvu')->where('dv_ma', $idService)->orderBy('ngay_ma','desc')->first();
+        $data = [
+            'service' => $service,
+            'price' => $priceService
+        ];
+        return response()->json($data, 200);
     }
 
     public function getTestByType($idType) {

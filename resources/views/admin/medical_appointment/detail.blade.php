@@ -209,7 +209,7 @@
                                                         <tr>
                                                         <th style="width: 10px">#</th>
                                                         <th>Tên dịch vụ</th>
-                                                        <th>Trạng thái</th>
+                                                        <th>Giá tiền</th>
                                                         <th>Thao tác</th>
                                                         </tr>
                                                     </thead>
@@ -218,7 +218,7 @@
                                                         </tbody>
                                                         <tbody>
                                                             <tr>
-                                                                <td colspan="4" class="text-center">
+                                                                <td colspan="3" class="text-center">
                                                                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                                                                 </td>
                                                             </tr>
@@ -521,29 +521,38 @@
         $('#addService').click(function (e) {
             // let result = text.replace(/^\s+|\s+$/gm,'');
             e.preventDefault();
-            console.log("clicked service");
+            // console.log("clicked service");
             var idService = $('.service').val();
             var nameService = $('.service').text();
             console.log(idService);
-            console.log(nameService);
+            // console.log(nameService);
             if(idService == null) {
                 alert("Không được để trống dịch vụ");
             }else {
-                var content = '<tr>';
-                content += '<td>1.</td>';
-                content += '<td>';
-                content += '<input value="'+ idService +'" hidden name="dichVu[]" />';
-                content += '<input value="'+ nameService.replace(/^\s+|\s+$/gm,'') +'" class="form-control" readonly />';
-                content += '</td>';
-                content += '<td>';
-                content += '<select id="statusService" class="form-control" name="statusService">';
-                content += '<option value="1">Đang xử lý</option>';
-                content += '<option value="2">Đang thực hiện</option>';
-                content += '<option value="3">Hoàn thành</option>';
-                content += '</select>';
-                content += '</td>';
-                content += '<td>' + '<a href="#" class="btn btn-sm btn-danger">Xóa</a>'+'</td>';
-                content += '</tr>';
+                var url = base_url+"chi-tiet-dich-vu/"+idService;
+                console.log(url);
+                var content = '';
+                $.ajax({
+                    type: "GET",
+                    url: base_url+"/chi-tiet-dich-vu/"+idService,
+                    // data: "data",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        content += '<tr>';
+                        content += '<td></td>';
+                        content += '<td>';
+                        content += '<input value="'+ idService +'" hidden name="dichVu[]" />';
+                        content += '<input value="'+ response.service.dv_ten +'" class="form-control" readonly />';
+                        content += '</td>';
+                        content += '<td>';
+                        content += '<input value="'+ response.price.gdv_gia +'" class="form-control" readonly />';
+                        content += '</td>';
+                        content += '<td>' + '<a href="#" class="btn btn-sm btn-danger">Xóa</a>'+'</td>';
+                        content += '</tr>';
+                    }
+                });
+
                 $('.serviceAppend').append(content);
             }
         });

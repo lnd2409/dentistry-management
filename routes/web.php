@@ -182,6 +182,7 @@ Route::get('/dich-vu/{idTypeservice}', [MedicalAppointmentCard::class, 'getServi
 Route::get('getSchedule', [ScheduleController::class, 'getSchedule'])->name('getSchedule');
 Route::get('{idType}/can-lam-san/', [MedicalAppointmentCard::class, 'getTestByType']);
 Route::get('/chi-tiet-xet-nghiem/{id}', [TestProcessController::class, 'showAjax'])->name('showAjax');
+Route::get('/chi-tiet-dich-vu/{idService}', [MedicalAppointmentCard::class, 'getServiceDetail']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

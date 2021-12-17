@@ -52,7 +52,7 @@
                                 </p>
                                
                            @else
-                               
+                               <p><span style="color: red">Không tìm thấy kết quả!!!!!</span></p>
                            @endif
                            
                         </div>

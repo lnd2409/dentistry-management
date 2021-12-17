@@ -57,8 +57,13 @@ class MedicalAppointmentCard extends Controller
         //Phiếu xét nghiệm
         $appointmentTest = DB::table('phieuxetnghiem')->join('canlamsan','canlamsan.cls_ma','phieuxetnghiem.cls_ma')->where('phieuxetnghiem.pk_ma',$id)->get();
 
+
+        //Dịch vụ chi tiết
+        $service = DB::table('chitietphieukhamdichvu')->join('dichvu','dichvu.dv_ma','chitietphieukhamdichvu.dv_ma')
+                    ->where('chitietphieukhamdichvu.pk_ma', $id)->get();
+
         return view('admin.medical_appointment.detail',
-        compact('appointmentTest','detail','info','medical','testType','medicalAll','medicalSelect','serviceType','history'));
+        compact('appointmentTest','detail','info','medical','testType','medicalAll','medicalSelect','serviceType','history','service'));
     }
 
     public function updateNote($idRecord, Request $request) {
@@ -106,6 +111,29 @@ class MedicalAppointmentCard extends Controller
         return redirect()->back();
     }
 
+    public function addServices(Request $request, $idPhieuKham) {
+        $service = $request->get('dichVu');
+        // dd($service);
+        $price = $request->get('gia');
+        // dd($price);
+        foreach ($service as $key => $value) {
+            # code...
+            $insert = DB::table('chitietphieukhamdichvu')->insert(
+                [
+                    'ctpkdv_gia' => $price[$key],
+                    'dv_ma' => $value,
+                    'pk_ma' => $idPhieuKham
+                ]
+            );
+        }
+        return redirect()->back();
+    }
+
+    public function removeService($idServiceDetail) {
+        $del = DB::table('chitietphieukhamdichvu')->where('ctpkdv_id', $idServiceDetail)->delete();
+        return redirect()->back();
+    }
+
     public function handleMedicalAppointment($idPhieuKham, Request $request) {
         DB::table('phieuxetnghiem')->insert(
             [
@@ -117,9 +145,22 @@ class MedicalAppointmentCard extends Controller
         return redirect()->back();
     }
 
-    public function getService($idTypeservice) {
-        $service = DichVu::where('ldv_ma', $idTypeservice)->get();
+    public function getService($idTypeservice,$id) {
+        $serviceSelected = DB::table('chitietphieukhamdichvu')->join('dichvu','dichvu.dv_ma','chitietphieukhamdichvu.dv_ma')
+                    ->where('chitietphieukhamdichvu.pk_ma', $id)->select('chitietphieukhamdichvu.dv_ma')->pluck('chitietphieukhamdichvu.dv_ma');
+        // return response()->json($serviceSelected, 200);
+        $service = DichVu::where('ldv_ma', $idTypeservice)->whereNotIn('dv_ma',$serviceSelected)->get();
         return response()->json($service, 200);
+    }
+
+    public function getServiceDetail($idService) {
+        $service = DichVu::find($idService);
+        $priceService = DB::table('giadichvu')->where('dv_ma', $idService)->orderBy('ngay_ma','desc')->first();
+        $data = [
+            'service' => $service,
+            'price' => $priceService
+        ];
+        return response()->json($data, 200);
     }
 
     public function getTestByType($idType) {

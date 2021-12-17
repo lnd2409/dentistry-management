@@ -116,6 +116,46 @@
             </div>
         </div>
     </div>
+
+    <h2 style="text-align: center">Dịch vụ</h2>
+    <div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell">
+                    <table class="bordered width-100pc">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Giá tiền</th>
+                        </tr>
+                        @php
+                            $tongTienDichVu = 0;
+                            $sttService = 1;
+                        @endphp
+                        @foreach ($service as $item)
+                        @php
+                            $tongTienDichVu = $tongTienDichVu + $item->ctpkdv_gia;
+                        @endphp
+                            <tr>
+                                <td>{{ $sttService++ }}</td>
+                                <td>
+                                {{ $item->dv_ten }}
+                                </td>
+                                <td>
+                                {{ $item->ctpkdv_gia }}
+                                </td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <th colspan="2">TỔNG TIỀN: </th>
+                            <th>{{ number_format($tongTienDichVu) }}</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h2 style="text-align: center">Cận lâm sàn</h2>
     <div class="divTable"">
         <div class="divTableBody">
@@ -156,6 +196,6 @@
             </div>
         </div>
     </div>
-    <h4>TỔNG TIỀN THANH TOÁN: {{ number_format($tongTienCanLamSan + $tongTienThuoc) }} VND</h4>
+    <h4>TỔNG TIỀN THANH TOÁN: {{ number_format($tongTienCanLamSan + $tongTienThuoc + $tongTienDichVu) }} VND</h4>
 </body>
 </html>

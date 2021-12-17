@@ -15,7 +15,7 @@ class CreateChitietphieukhamdichvuTable extends Migration
     {
         Schema::create('chitietphieukhamdichvu', function (Blueprint $table) {
             $table->id('ctpkdv_id');
-
+            $table->integer('ctpkdv_gia');
             $table->bigInteger('dv_ma')->unsigned();
             $table->foreign('dv_ma')->references('dv_ma')->on('dichvu')->onDelete('CASCADE');
 

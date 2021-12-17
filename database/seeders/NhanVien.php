@@ -68,7 +68,7 @@ class NhanVien extends Seeder
        'username'=>'lnnghia',
        'password' => bcrypt('12345'),
        'cm_ma' => 1,
-       'cv_ma' => 2,
+       'cv_ma' => 1,
        ],
 
        ];

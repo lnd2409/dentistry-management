@@ -53,6 +53,7 @@ Route::post('/dat-lich-hen', [DatLichHenController::class, 'store'])->name('cust
 
 //Xem lịch hẹn
 Route::get('/xem-lich-hen', [DatLichHenController::class, 'reView'])->name('customer.xemlichhen');
+Route::post('/xem-lich-hen', [DatLichHenController::class, 'reSearchView'])->name('customer.tracuulichhen');
 Route::view('user', 'aesthetic.layout');
 // Route::view('admin', 'admin.layout');
 Route::get('/dang-xuat', [AuthCustomerController::class, 'logout'])->name('customer.logout');

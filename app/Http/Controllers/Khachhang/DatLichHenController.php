@@ -90,9 +90,14 @@ class DatLichHenController extends Controller
 
     public function reView()
     {
-        $lichHen = DB::table('phieuhen')->where('hsb_ma', Auth::guard('khachhang')->id())->get();
-        // dd($lichHen);
-        return view('client.lichhen.index',compact('lichHen'));
+        return view('client.lichhen.index');
+    }
+
+    public function reSearchView(Request $request)
+    {
+        $data = DB::table('phieuhen')->where('ph_maso','like','%'.$request->findData.'%')->first();
+        
+        return view('client.lichhen.index',compact('data'));
     }
    
     public function getAllAppointment()

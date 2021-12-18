@@ -34,7 +34,22 @@
     </style>
 </head>
 <body>
+    <table >
+        <tr>
+            <th style="text-align: left;">Nha khoa Dr. Vinh</th>
+        </tr>
+        <tr>
+            <th style="text-align: left;">Địa chỉ: số 23 đường 3/2 phường Hưng Lợi, Ninh Kiều, TP. Cần Thơ</th>
+        </tr>
+        <tr>
+            <th style="text-align: left;">SĐT: 0939 215 999</th>
+        </tr>
+        <tr>
+            <th style="text-align: left;">Giờ làm việc: 8:30 - 20:00</th>
+        </tr>
+    </table>
     <h1 style="text-align: center">PHIẾU THU VIỆN PHÍ</h1>
+    <h4 style="text-align: center">Ngày lập: {{ Carbon\Carbon::now()->format('d-m-Y') }}</h4>
     <table >
         <tr>
             <th style="text-align: left;">Họ tên: </th>

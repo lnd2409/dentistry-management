@@ -16,7 +16,7 @@ class NhanVien extends Seeder
     {
            $nhanvien = [
        [
-       'nv_ten'=>'Trần Thanh Phụng',
+       'nv_ten'=>'Trần A',
        'nv_sdt'=>'099996969',
        'nv_cmnd'=>'099996969',
        'nv_diachi'=>'118 Bùi Thị Xuân, NK, CT',
@@ -38,7 +38,7 @@ class NhanVien extends Seeder
        'cv_ma' => 3,
        ],
        [
-       'nv_ten'=>'Trần Thanh Phụng',
+       'nv_ten'=>'Trần B',
        'nv_sdt'=>'099996969',
        'nv_cmnd'=>'099996969',
        'nv_diachi'=>'118 Bùi Thị Xuân, NK, CT',
@@ -49,7 +49,7 @@ class NhanVien extends Seeder
        'cv_ma' => 3,
        ],
        [
-       'nv_ten'=>'Lê Ngọc Đức',
+       'nv_ten'=>'Lê C',
        'nv_sdt'=>'099996969',
        'nv_cmnd'=>'099996969',
        'nv_diachi'=>'118 Bùi Thị Xuân, NK, CT',
@@ -60,7 +60,7 @@ class NhanVien extends Seeder
        'cv_ma' => 2,
        ],
        [
-       'nv_ten'=>'Lê Minh Nghĩa',
+       'nv_ten'=>'Lê D',
        'nv_sdt'=>'099996969',
        'nv_cmnd'=>'099996969',
        'nv_diachi'=>'118 Bùi Thị Xuân, NK, CT',

@@ -31,7 +31,7 @@
                     dateClick: function (info) {
                         $('#btnModal').click();
                         $("#ngay_ma").val(info.dateStr);
-                        info.dayEl.style.backgroundColor = 'bbackgroundlue';
+                        info.dayEl.style.backgroundColor = 'background';
                     },
                     eventDidMount: function(info) {
                         $(info.el).tooltip({

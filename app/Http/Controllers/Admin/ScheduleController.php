@@ -118,7 +118,7 @@ class ScheduleController extends Controller
                 $end.='T'.$value->ca->ca_gioketthuc;
             }
             $x = (object) [
-                'title' => $value->nhanvien->nv_ten,
+                'title' => $value->nhanvien->chucvu->cv_ten.' - '.$value->nhanvien->nv_ten,
                 'description' => $value->nhanvien->nv_ten,
                 'start' => $start,
                 'end' => $end,

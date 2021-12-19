@@ -37,7 +37,7 @@
                                 </p>
                            </a>
                        </li>
-                       @if(Auth::guard('nhanvien')->user()->cv_ma==1)
+                       @if(Auth::guard('nhanvien')->user()->cv_ma==2 || Auth::guard('nhanvien')->user()->cv_ma==3)
                         <li class="nav-item">
                             <a href="{{ route('admin.lichhen') }}"
                                 class="nav-link @if(Request::segment(1)=='lich-hen' ) active @endif">
@@ -47,8 +47,17 @@
                                 </p>
                            </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('receipt.index') }}"
+                                class="nav-link @if(Request::segment(1)=='phieu-thu' ) active @endif">
+                                <i class="fas fa-th-list"></i>
+                                <p>
+                                    Phiếu thu
+                                </p>
+                            </a>
+                        </li>
                         @endif
-                        @if(Auth::guard('nhanvien')->user()->cv_ma==2)
+                        @if(Auth::guard('nhanvien')->user()->cv_ma==1 || Auth::guard('nhanvien')->user()->cv_ma==3)
                         <li class="nav-item">
                            <a href="{{ route('medical.appointment.index') }}"
                                class="nav-link @if(Request::segment(1)=='phieu-kham' ) active @endif">
@@ -58,15 +67,7 @@
                                </p>
                            </a>
                        </li>
-                       <li class="nav-item">
-                        <a href="{{ route('receipt.index') }}"
-                            class="nav-link @if(Request::segment(1)=='phieu-thu' ) active @endif">
-                            <i class="fas fa-th-list"></i>
-                            <p>
-                                Phiếu thu
-                            </p>
-                        </a>
-                    </li>
+                       
                        <li class="nav-item">
                            <a href="{{ route('test.process.index') }}"
                                class="nav-link @if(Request::segment(1)=='quy-trinh-can-lam-san' ) active @endif">
@@ -96,8 +97,6 @@
                                 </p>
                             </a>
                         </li>
-                        @endif
-                       @if(Auth::guard('nhanvien')->user()->cv_ma==5)
 
                         <li class="nav-item">
                             <a href="{{route('loaidichvu.index')}}"

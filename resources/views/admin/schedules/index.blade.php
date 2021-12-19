@@ -114,7 +114,7 @@
                             <label for="my-input">Nhân viên</label>
                             <select name="nv_ma" class="form-control">
                                 @foreach($nhanvien as $item)
-                                <option value="{{$item->nv_ma}}">{{$item->nv_ten}}</option>
+                                <option value="{{$item->nv_ma}}">{{$item->chucvu->cv_ten}} - {{$item->nv_ten}}</option>
                                 @endforeach
                             </select>
                         </div>

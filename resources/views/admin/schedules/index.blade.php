@@ -113,8 +113,9 @@
 <div class="container-fluid">
     <br>
     <div class="form-check form-switch">
+
         <input class="form-check-input" type="checkbox" id="checkbox" checked>
-        <label class="form-check-label" for="checkbox">Chấm công</label>
+        <label class="form-check-label" for="checkbox">Xoá - Chấm công</label>
       </div>
 
     <div id='calendar'></div>

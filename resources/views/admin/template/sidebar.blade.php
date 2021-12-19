@@ -153,6 +153,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('schedules.stat')}}"
+                                class="nav-link @if(Request::segment(2)=='thong-ke-lich-truc' ) active @endif">
+                                <i class="far fa-calendar-alt"></i>
+                                <p>
+                                    Thống kê lịch trực
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('expertises.index')}}"
                                 class="nav-link @if(Request::segment(2)=='chuyen-mon' ) active @endif">
                                 <i class="fas fa-id-card"></i>

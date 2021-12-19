@@ -15,7 +15,36 @@
         </div>
     </div>
     <br>
+    @php
+    $today = today(); 
+    $dates = []; 
 
+    for($i=1; $i < $today->daysInMonth + 1; ++$i) {
+        $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('F-d-Y');
+    }
+@endphp
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>DATE TODAY</th>
+        <th>TIME IN</th>
+        <th>TIME OUT</th>
+        <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        foreach($dates as $date)
+            <tr>
+                <td><b>{{ $date }}</b></td>
+                <input type="hidden" name="dateToday" value="{{ $date }}">
+                <td><input type="time" name="timeIn" class="form-control col-md-10"></td>
+                <td><input type="time" name="timeOut" class="form-control col-md-10"></td>
+                <td> {{Form::button('<i class="fa fa-clock">&nbsp;&nbsp;SET TIME</i>',['type' => 'submit','class' => 'btn btn-warning btn-sm',  'style'=>"display: inline-block;"])}}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
     <table class="table">
         <thead>
             <tr>

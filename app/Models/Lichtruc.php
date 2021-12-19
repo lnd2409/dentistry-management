@@ -39,7 +39,8 @@ class Lichtruc extends Model
 	protected $fillable = [
 		'ca_ma',
 		'nv_ma',
-		'ngay_ma'
+		'ngay_ma',
+		'chamcong'
 	];
 
 	public function ca()

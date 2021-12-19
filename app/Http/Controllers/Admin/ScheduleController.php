@@ -122,10 +122,25 @@ class ScheduleController extends Controller
                 'description' => $value->nhanvien->nv_ten,
                 'start' => $start,
                 'end' => $end,
-                'id'=>$value->lt_ma
+                'id'=>$value->lt_ma,
+                'backgroundColor'=>$value->chamcong==1?'green':'blue',
             ];
             $schedule[$key]=$x;
         }
          return response()->json($schedule, 200);
+    }
+
+    public function check(Request $request)
+    {
+        $lt=Lichtruc::where('lt_ma',$request->id)->first();
+        if($lt->chamcong==0){
+            Lichtruc::where('lt_ma',$request->id)->update(['chamcong'=>1]);
+
+        }else{
+        Lichtruc::where('lt_ma',$request->id)->update(['chamcong'=>0]);
+
+        }
+
+        return response()->json('success', 200);
     }
 }

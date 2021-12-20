@@ -12,9 +12,6 @@
             <a class="btn btn-primary" href="{{ route('medical.record.add') }}">
                 Thêm hồ sơ bệnh mới
             </a>
-            <a class="btn btn-primary" href="{{ route('medical.record.add') }}">
-                Tạo phiếu khám
-            </a>
         </div>
     </div>
     <br>
@@ -79,9 +76,7 @@
                         {{-- <form action="{{route('loaidichvu.destroy',$item)}}" method="post"> --}}
                             {{-- @csrf --}}
                             <a href="{{ route('medical.appointment.create', ['idRecord'=>$item->hsb_ma]) }}" class="btn btn-success">Khám bệnh</a>
-                            <a href="#" class="btn btn-default">Chi tiết</a>
                             <a href="{{route('loaidichvu.edit',$item)}}" class="btn btn-warning">sửa</a>
-                            <button type="submit" class="btn btn-danger">xóa</button>
                         {{-- </form> --}}
                     </td>
                 </tr>

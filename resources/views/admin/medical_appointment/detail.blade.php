@@ -81,11 +81,17 @@
                                     </li>
                                     <li class="list-group-item">
                                         <div class="form-group">
-                                            <label for="my-input">Ngày tái khám</label>
+                                            <label for="my-input">Ngày tái khám:
+                                                @if ($detail->pk_ngaytaikham == null)
+                                                    <b style="color: red;">Chưa chỉ định ngày tái khám</b>
+                                                @else
+                                                    <b>{{ $detail->pk_ngaytaikham->format('d-m-Y') }}</b>
+                                                @endif
+                                            </label>
                                             @if ($detail->pk_ngaytaikham == null)
                                                 <input id="my-input" class="form-control" value="{{$detail->pk_ngaytaikham}}" type="date" name="pk_ngaytaikham">
                                             @else
-                                            <input id="my-input" class="form-control" value="{{$detail->pk_ngaytaikham}}" type="date" name="pk_ngaytaikham">
+                                                <input id="my-input" class="form-control" value="{{$detail->pk_ngaytaikham}}" type="date" name="pk_ngaytaikham">
                                             @endif
 
                                         </div>

@@ -97,6 +97,14 @@ class MedicalAppointmentCard extends Controller
                                 'ctt_cachdung' => $cachDung[$key],
                             ]
                         );
+
+                $getQuantityMedical = DB::table('thuoc')->where('thuoc_ma', $value)->first();
+                $medicalQuantityRemaining = intval($getQuantityMedical->thuoc_soluong) - intval($soLuong[$key]);
+                $updateQuantityMedical = DB::table('thuoc')->where('thuoc_ma', $value)->update(
+                    [
+                        'thuoc_soluong' => $medicalQuantityRemaining
+                    ]
+                );
             }else {
                 $insert = DB::table('chitietthuoc')->insert(
                     [   'thuoc_ma' => $value,
@@ -106,6 +114,16 @@ class MedicalAppointmentCard extends Controller
                         'pk_ma' => $idPhieuKham
                     ]
                 );
+
+
+                $getQuantityMedical = DB::table('thuoc')->where('thuoc_ma', $value)->first();
+                $medicalQuantityRemaining = intval($getQuantityMedical->thuoc_soluong) - intval($soLuong[$key]);
+                $updateQuantityMedical = DB::table('thuoc')->where('thuoc_ma', $value)->update(
+                    [
+                        'thuoc_soluong' => $medicalQuantityRemaining
+                    ]
+                );
+
             }
         }
         return redirect()->back();

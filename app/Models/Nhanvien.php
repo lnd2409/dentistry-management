@@ -92,4 +92,22 @@ class Nhanvien extends Authenticatable
 	{
 		return $this->belongsTo(Chucvu::class, 'cv_ma');
 	}
+
+	public function chamcong($date,$ca)
+	{
+		$lt=Lichtruc::
+		whereHas('ngay', function($q) use ($date){
+            $q->whereDate('ngay', date('Y-m-d',strtotime($date)));
+        })
+		->where('nv_ma',$this->attributes['nv_ma'])
+		->where('ca_ma',$ca)
+		->first();
+		if($lt){
+			if($lt->chamcong==0){
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
 }

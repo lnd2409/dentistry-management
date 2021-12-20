@@ -63,18 +63,26 @@ Route::get('/dang-xuat', [AuthCustomerController::class, 'logout'])->name('custo
 //Trang quản trị khi đã login
 Route::middleware(['CheckAuthSatff'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::group(['middleware' => 'CheckRole:1'], function () { //quản lý kho
+        Route::get('/dang-xuat', [AuthStaffController::class, 'logout'])->name('staff.logout');
+
+        Route::group(['middleware' => 'CheckRole:2'], function () { //lễ tân
             Route::get('/lich-hen', [DatLichHenController::class, 'getAllAppointment'])->name('admin.lichhen');
             Route::get('/lich-hen-them', [DatLichHenController::class, 'addAppoitment'])->name('admin.themlichhen');
             Route::post('/cap-nhat-lich-hen', [DatLichHenController::class, 'updateAllAppointment'])->name('admin.capnhatlichhen');
             Route::post('/tim-kiem-lich-hen', [DatLichHenController::class, 'searchAllAppointment'])->name('admin.timkiemtlichhen');
-            Route::get('/dang-xuat', [AuthStaffController::class, 'logout'])->name('staff.logout');
+            
+            Route::prefix('/phieu-thu')->name('receipt.')->group(function () {
+                Route::get('/danh-sach', [ReceiptController::class, 'index'])->name('index');
+                Route::get('/tao-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createReceipt'])->name('create');
+                Route::get('/xuat-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createPDF'])->name('create.pdf');
+                Route::get('/thanh-toan/{id}', [ReceiptController::class, 'changeStatus'])->name('change.status');
+            });
         });
 
         /*
         * Thuocs Routes
         */
-        Route::group(['middleware' => 'CheckRole:3'], function () { //quản lý kho
+        Route::group(['middleware' => 'CheckRole:3'], function () { //admin
             Route::prefix('/thuoc')->name('thuoc.')->group(function () {
                 Route::get('/', [MedicineController::class, 'index'])->name('index');
                 Route::get('/them', [MedicineController::class, 'create'])->name('create');
@@ -83,10 +91,6 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
                 Route::post('/{thuoc}/cap-nhat', [MedicineController::class, 'update'])->name('update');
                 Route::post('/{thuoc}/xoa', [MedicineController::class, 'destroy'])->name('destroy');
             });
-        });
-
-
-        Route::group(['middleware' => 'CheckRole:5'], function () { //admin
             Route::prefix('/loai-dich-vu')->name('loaidichvu.')->group(function () {
                 Route::get('/', [ServiceTypeController::class, 'index'])->name('index');
                 Route::get('/them', [ServiceTypeController::class, 'create'])->name('create');
@@ -136,18 +140,14 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
                 Route::post('/cap-nhat/{chuyenmon}', [ExpertiseController::class, 'update'])->name('update');
                 Route::post('/xoa/{chuyenmon}', [ExpertiseController::class, 'destroy'])->name('destroy');
             });
-            Route::prefix('lich-truc')->name('schedules.')->group(function () {
-                Route::get('/', [ScheduleController::class, 'index'])->name('index');
-                Route::post('/luu', [ScheduleController::class, 'store'])->name('store');
-                Route::post('/xoa', [ScheduleController::class, 'destroy'])->name('destroy');
-            });
+           
         });
     });
 
     // Auth::routes();
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::view('/admin', 'admin/template.layout');
-    Route::group(['middleware' => 'CheckRole:2'], function () {
+    Route::group(['middleware' => 'CheckRole:1'], function () {
         Route::prefix('/ho-so-benh')->name('medical.record.')->group(function () {
             Route::get('/', [MedicalRecordsController::class, 'index'])->name('index');
             Route::get('/them-moi', [MedicalRecordsController::class, 'create'])->name('add');
@@ -168,13 +168,16 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
             Route::post('/cap-nhat/{id}', [TestProcessController::class, 'update'])->name('update');
         });
 
-
-        Route::prefix('/phieu-thu')->name('receipt.')->group(function () {
-            Route::get('/danh-sach', [ReceiptController::class, 'index'])->name('index');
-            Route::get('/tao-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createReceipt'])->name('create');
-            Route::get('/xuat-phieu-thu/{idMedicalRecord}', [ReceiptController::class, 'createPDF'])->name('create.pdf');
-            Route::get('/thanh-toan/{id}', [ReceiptController::class, 'changeStatus'])->name('change.status');
+        Route::prefix('lich-truc')->name('schedules.')->group(function () {
+            Route::get('/', [ScheduleController::class, 'index'])->name('index');
+            Route::post('/luu', [ScheduleController::class, 'store'])->name('store');
+            Route::get('/cham-cong', [ScheduleController::class, 'check'])->name('check');
+            Route::get('/thong-ke', [ScheduleController::class, 'stat'])->name('stat');
+            Route::post('/xoa', [ScheduleController::class, 'destroy'])->name('destroy');
         });
+
+
+        
     });
 });
 
@@ -187,24 +190,5 @@ Route::get('/chi-tiet-xet-nghiem/{id}', [TestProcessController::class, 'showAjax
 Route::get('/chi-tiet-dich-vu/{idService}', [MedicalAppointmentCard::class, 'getServiceDetail']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/ca', function () {
-    $ca = [
-        [
-            'ca_giobatdau' => '7:00',
-            'ca_gioketthuc' => '11:00',
-        ],
-        [
-            'ca_giobatdau' => '13:00',
-            'ca_gioketthuc' => '17:00',
-        ],
-        [
-            'ca_giobatdau' => '16:00',
-            'ca_gioketthuc' => '20:00',
-        ],
-
-    ];
-    \DB::table('ca')->insert($ca);
-});
 
 Route::get('/mail', [TestSendMailController::class, 'index'])->name('sendmail');

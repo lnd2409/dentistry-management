@@ -1,8 +1,13 @@
 @extends('admin.template.layout')
 @push('css')
+<style>
+    .form-check.form-switch {
+    font-size: 25px;
+}
+</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css"
     integrity="sha256-zsz1FbyNCtIE2gIB+IyWV7GbCLyKJDTBRz0qQaBSLxM=" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
     integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
@@ -26,7 +31,7 @@
                     dateClick: function (info) {
                         $('#btnModal').click();
                         $("#ngay_ma").val(info.dateStr);
-                        info.dayEl.style.backgroundColor = 'blue';
+                        info.dayEl.style.backgroundColor = 'background';
                     },
                     eventDidMount: function(info) {
                         $(info.el).tooltip({
@@ -41,6 +46,26 @@
 
                     eventClick: function (info) {
                         info.jsEvent.preventDefault(); // don't let the browser navigate
+                        let check=$('#checkbox:checked').val()?true:false;
+                        if(check){
+                            $.ajax({
+                                /* the route pointing to the post function */
+                                url: "{{route('schedules.check')}}",
+                                type: 'GET',
+                                /* send the csrf-token and the input to the controller */
+                                data: {
+                                    id: info.event.id
+                                },
+                                dataType: 'JSON',
+                                /* remind that 'data' is the response of the AjaxController */
+                                success: function (data) {
+                                    location.reload();
+                                    info.backgroundColor = 'green';
+                                }
+
+                            });
+                        }else{
+
                         if (confirm("Bạn muốn xoá lịch trực này?")) {
 
                             $.ajaxSetup({
@@ -65,6 +90,7 @@
 
                             });
                         }
+                        }
                     }
                 });
                 calendar.render();
@@ -86,7 +112,11 @@
 @section('content')
 <div class="container-fluid">
     <br>
+    <div class="form-check form-switch">
 
+        <input class="form-check-input" type="checkbox" id="checkbox" checked>
+        <label class="form-check-label" for="checkbox">Xoá - Chấm công</label>
+      </div>
 
     <div id='calendar'></div>
 
@@ -114,7 +144,7 @@
                             <label for="my-input">Nhân viên</label>
                             <select name="nv_ma" class="form-control">
                                 @foreach($nhanvien as $item)
-                                <option value="{{$item->nv_ma}}">{{$item->nv_ten}}</option>
+                                <option value="{{$item->nv_ma}}">{{$item->chucvu->cv_ten}} - {{$item->nv_ten}}</option>
                                 @endforeach
                             </select>
                         </div>

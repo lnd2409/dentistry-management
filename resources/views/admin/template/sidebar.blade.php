@@ -16,7 +16,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"> {{Auth::guard('nhanvien')->user()->nv_ten}} </a>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                                 </p>
                            </a>
                        </li>
-                       @if(Auth::guard('nhanvien')->user()->cv_ma==1)
+                       @if(Auth::guard('nhanvien')->user()->cv_ma==2 || Auth::guard('nhanvien')->user()->cv_ma==3)
                         <li class="nav-item">
                             <a href="{{ route('admin.lichhen') }}"
                                 class="nav-link @if(Request::segment(1)=='lich-hen' ) active @endif">
@@ -47,8 +47,17 @@
                                 </p>
                            </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('receipt.index') }}"
+                                class="nav-link @if(Request::segment(1)=='phieu-thu' ) active @endif">
+                                <i class="fas fa-th-list"></i>
+                                <p>
+                                    Phiếu thu
+                                </p>
+                            </a>
+                        </li>
                         @endif
-                        @if(Auth::guard('nhanvien')->user()->cv_ma==2)
+                        @if(Auth::guard('nhanvien')->user()->cv_ma==1 || Auth::guard('nhanvien')->user()->cv_ma==3)
                         <li class="nav-item">
                            <a href="{{ route('medical.appointment.index') }}"
                                class="nav-link @if(Request::segment(1)=='phieu-kham' ) active @endif">
@@ -58,15 +67,7 @@
                                </p>
                            </a>
                        </li>
-                       <li class="nav-item">
-                        <a href="{{ route('receipt.index') }}"
-                            class="nav-link @if(Request::segment(1)=='phieu-thu' ) active @endif">
-                            <i class="fas fa-th-list"></i>
-                            <p>
-                                Phiếu thu
-                            </p>
-                        </a>
-                    </li>
+                       
                        <li class="nav-item">
                            <a href="{{ route('test.process.index') }}"
                                class="nav-link @if(Request::segment(1)=='quy-trinh-can-lam-san' ) active @endif">
@@ -96,8 +97,6 @@
                                 </p>
                             </a>
                         </li>
-                        @endif
-                       @if(Auth::guard('nhanvien')->user()->cv_ma==5)
 
                         <li class="nav-item">
                             <a href="{{route('loaidichvu.index')}}"
@@ -150,6 +149,15 @@
                                 <i class="far fa-calendar-alt"></i>
                                 <p>
                                     Lịch trực
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('schedules.stat')}}"
+                                class="nav-link @if(Request::segment(2)=='thong-ke-lich-truc' ) active @endif">
+                                <i class="far fa-calendar-alt"></i>
+                                <p>
+                                    Thống kê lịch trực
                                 </p>
                             </a>
                         </li>

@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__top">
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__logo">
                         <a href="#"><img src="img/footer-logo.png" alt=""></a>
@@ -24,12 +24,12 @@
                         <a href="#"><i class="fa fa-dribbble"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            {{-- <div class="col-lg-2 col-md-3 col-sm-6">
                 <div class="footer__widget">
                     <h5>Company</h5>
                     <ul>
@@ -52,14 +52,14 @@
                         <li><a href="#">Fat Reduction</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="footer__address">
-                    <h5>Contact Us</h5>
+                    <h5>Thông tin liên hệ</h5>
                     <ul>
-                        <li><i class="fa fa-map-marker"></i> Los Angeles Gournadi, 1230 Bariasl</li>
-                        <li><i class="fa fa-phone"></i> 1-677-124-44227</li>
-                        <li><i class="fa fa-envelope"></i> Support@gmail.com</li>
+                        <li><i class="fa fa-map-marker"></i>Khu II, Đại học Cần Thơ</li>
+                        <li><i class="fa fa-phone"></i> 0123456789</li>
+                        <li><i class="fa fa-envelope"></i> canthoctu@gmail.com</li>
                     </ul>
                 </div>
             </div>

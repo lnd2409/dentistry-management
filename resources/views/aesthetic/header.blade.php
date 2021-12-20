@@ -63,7 +63,7 @@
                             <ul>
                                 <li class="active"><a href="{{ route('customer.home') }}">Trang chủ</a></li>
                                 {{-- <li><a href="./about.html"></a></li> --}}
-                                <li><a href="./services.html">Dịch vụ</a></li>
+                                {{-- <li><a href="./services.html">Dịch vụ</a></li> --}}
                                 {{-- <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="./pricing.html">Pricing</a></li>
@@ -71,7 +71,7 @@
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li> --}}
-                                <li><a href="./blog.html">News</a></li>
+                                {{-- <li><a href="./blog.html">News</a></li> --}}
                                 <li><a href="{{ route('customer.xemlichhen') }}">Lịch hẹn</a></li>
                             </ul>
                         </nav>

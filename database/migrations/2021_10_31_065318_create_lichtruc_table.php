@@ -15,6 +15,7 @@ class CreateLichtrucTable extends Migration
     {
         Schema::create('lichtruc', function (Blueprint $table) {
             $table->id('lt_ma');
+            $table->integer('chamcong')->default(0);
 
             $table->bigInteger('ca_ma')->unsigned();
             $table->foreign('ca_ma')->references('ca_ma')->on('ca')->onDelete('CASCADE');

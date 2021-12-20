@@ -5,13 +5,13 @@
     <section class="hero spad set-bg" data-setbg="{{asset('template/aesthetic/img/hero-bg.jpg')}}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <div class="hero__text">
                         <span>Eiusmod tempor incididunt </span>
                         <h2>Take the world's best quality Treadment</h2>
                         <a href="#" class="primary-btn normal-btn">Contact us</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -23,8 +23,8 @@
                 <div class="col-lg-4">
                     <div class="consultation__form">
                         <div class="section-title">
-                            <span>Đặt lịch hẹn</span>
-                            <h2>Consultation</h2>
+                            {{-- <span>Đặt lịch hẹn</span> --}}
+                            <h2>Đặt lịch hẹn</h2>
                         </div>
                         {{-- Form đặt lịch hẹn --}}
                         <form action="{{ route('customer.datlichhen') }}" method="POST" enctype="multipart/form-data">
@@ -37,10 +37,10 @@
                            
                             <select name="noidung">
                                 <option value="">---Chọn dịch vụ---</option>
-                                <option value="Advanced equipment">Advanced equipment</option>
-                                <option value="Qualified doctors">Qualified doctors</option>
-                                <option value="Certified services">Certified services</option>
-                                <option value="Emergency care">Emergency care</option>
+                                <option value="Chỉnh hình">Chỉnh hình</option>
+                                <option value="Nội nha">Nội nha</option>
+                                <option value="Tái khám">Tái khám</option>
+                                <option value="Dịch vụ khác">Dịch vụ khác...</option>
                             </select>
                             <button type="submit" class="site-btn">Đặt lịch hẹn</button>
                         </form>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="consultation__text">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="consultation__text__item">
                                     <div class="section-title">
@@ -65,7 +65,7 @@
                                     <a href="https://www.youtube.com/watch?v=PXsuI67s2AA" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
     <!-- Consultation Section End -->
 
     <!-- Chooseus Section Begin -->
-    <section class="chooseus spad">
+    {{-- <section class="chooseus spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -115,11 +115,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Chooseus Section End -->
 
     <!-- Services Section Begin -->
-    <section class="services spad set-bg" data-setbg="img/services-bg.jpg">
+    {{-- <section class="services spad set-bg" data-setbg="img/services-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-6">
@@ -185,11 +185,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Services Section End -->
 
     <!-- Team Section Begin -->
-    <section class="team spad">
+    {{-- <section class="team spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -241,11 +241,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Team Section End -->
 
     <!-- Gallery Begin -->
-    <div class="gallery">
+    {{-- <div class="gallery">
         <div class="gallery__container">
             <div class="grid-sizer"></div>
             <div class="gc__item set-bg" data-setbg="img/gallery/gallery-1.jpg">
@@ -270,11 +270,11 @@
                 <a href="img/gallery/gallery-7.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Gallery End -->
 
     <!-- Latest News Begin -->
-    <section class="latest spad">
+    {{-- <section class="latest spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-6">
@@ -322,7 +322,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Latest News End -->
     
 @endsection

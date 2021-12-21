@@ -11,15 +11,19 @@
 @endsection
 @section('content')
 <div class="container-fluid">
+    <form action="" method="get">
 
-    <input type="month" id="date" name="date" value="{{$request->date}}">
-
+        <input type="month" id="date" name="date" value="{{$request->date}}">
+        <button type="submit" class="btn btn-primary">Xem</button>
+    </form>
+<br>
     @php
     $today = today();
+    $year=(int)date('Y',strtotime($request->date));
+    $month=(int)date('m',strtotime($request->date));
     $dates = [];
-
-    for($i=1; $i < $today->daysInMonth + 1; ++$i) {
-        $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('d-m-Y');
+    for($i=1; $i < (int)date('t',strtotime($request->date)) + 1; ++$i) {
+        $dates[] = \Carbon\Carbon::createFromDate($year, $month, $i)->format('d-m-Y');
         }
         @endphp
 

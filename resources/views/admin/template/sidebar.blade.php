@@ -144,6 +144,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('expertises.index')}}"
+                                class="nav-link @if(Request::segment(2)=='chuyen-mon' ) active @endif">
+                                <i class="fas fa-id-card"></i>
+                                <p>
+                                    Chuyên môn
+                                </p>
+                            </a>
+                        </li>
+                        @endif
+                        <li class="nav-item">
                             <a href="{{route('schedules.index')}}"
                                 class="nav-link @if(Request::segment(2)=='lich-truc' ) active @endif">
                                 <i class="far fa-calendar-alt"></i>
@@ -162,16 +172,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('expertises.index')}}"
-                                class="nav-link @if(Request::segment(2)=='chuyen-mon' ) active @endif">
-                                <i class="fas fa-id-card"></i>
-                                <p>
-                                    Chuyên môn
-                                </p>
-                            </a>
-                        </li>
-                        @endif
-                        <li class="nav-item">
                             <a href="{{route('staff.logout')}}"
                                 class="nav-link @if(Request::segment(2)=='admin/dang-xuat' ) active @endif">
                                 <i class="fas fa-id-card"></i>
@@ -180,8 +180,6 @@
                                 </p>
                             </a>
                         </li>
-
-
                     </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -10,6 +10,7 @@ use App\Models\Nhanvien;
 use App\Models\Phong;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
@@ -25,7 +26,10 @@ class ScheduleController extends Controller
         $lichtruc = Lichtruc::all();
         $ca = Ca::all();
         $phong = Phong::all();
-
+        if(Auth::guard('nhanvien')->user()->cv_ma!=3){
+            return view('admin.schedules.index_watch', compact('nhanvien', 'ca', 'phong'));
+ 
+        }
         return view('admin.schedules.index', compact('nhanvien', 'ca', 'phong'));
     }
 
@@ -146,8 +150,9 @@ class ScheduleController extends Controller
     public function stat(Request $request)
     {
         $request->date ?? $request->date = Carbon::now();
-        $year = $request->date->format('Y');
-        $month = $request->date->format('m');
+        
+        $year = date('Y',strtotime($request->date));
+        $month = date('m',strtotime($request->date));
         $nv = Nhanvien::all();
         $ca = Ca::all();
         $today = today();
@@ -162,11 +167,11 @@ class ScheduleController extends Controller
             $q->whereYear('ngay', '=', $year)
                 ->whereMonth('ngay', '=', $month);
         })
-            ->orderBy('created_at', 'asc')
             ->get();
+            
 
 
-        $request->date = $request->date->format('Y-m');
+        $request->date = date('Y-m',strtotime($request->date));
 
 
         foreach ($nv as $key => $value) {

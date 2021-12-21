@@ -168,16 +168,17 @@ Route::middleware(['CheckAuthSatff'])->group(function () {
             Route::post('/cap-nhat/{id}', [TestProcessController::class, 'update'])->name('update');
         });
 
-        Route::prefix('lich-truc')->name('schedules.')->group(function () {
-            Route::get('/', [ScheduleController::class, 'index'])->name('index');
-            Route::post('/luu', [ScheduleController::class, 'store'])->name('store');
-            Route::get('/cham-cong', [ScheduleController::class, 'check'])->name('check');
-            Route::get('/thong-ke', [ScheduleController::class, 'stat'])->name('stat');
-            Route::post('/xoa', [ScheduleController::class, 'destroy'])->name('destroy');
-        });
+        
 
 
         
+    });
+    Route::prefix('lich-truc')->name('schedules.')->group(function () {
+        Route::get('/', [ScheduleController::class, 'index'])->name('index');
+        Route::post('/luu', [ScheduleController::class, 'store'])->name('store');
+        Route::get('/cham-cong', [ScheduleController::class, 'check'])->name('check');
+        Route::get('/thong-ke', [ScheduleController::class, 'stat'])->name('stat');
+        Route::post('/xoa', [ScheduleController::class, 'destroy'])->name('destroy');
     });
 });
 

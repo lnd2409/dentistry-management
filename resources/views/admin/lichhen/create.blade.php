@@ -45,11 +45,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Dịch vụ</label>
                                         <select name="noidung" class="form-control">
-                                            <option value="">---Chọn dịch vụ---</option>
-                                            <option value="Advanced equipment">Advanced equipment</option>
-                                            <option value="Qualified doctors">Qualified doctors</option>
-                                            <option value="Certified services">Certified services</option>
-                                            <option value="Emergency care">Emergency care</option>
+                                             <option value="">---Chọn dịch vụ---</option>
+                                             <option value="Chỉnh hình">Chỉnh hình</option>
+                                             <option value="Nội nha">Nội nha</option>
+                                             <option value="Tái khám">Tái khám</option>
+                                             <option value="Dịch vụ khác">Dịch vụ khác...</option>
                                         </select>
                                     </div>
                                     <input type="hidden" name="typeAdmin" value="admin">
